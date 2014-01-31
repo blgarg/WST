@@ -1,0 +1,8 @@
+#php_value include_path "C:\wampn\www\HaryanaGranthAcademy\"
+# For security reasons, Option followsymlinks cannot be overridden.
+# Options +FollowSymlinks
+AddType application/octet-stream .wmv
+#RewriteEngine On
+#RewriteBase /
+#HaryanaGranthAcademy.com
+#RewriteRule ^home$ index.php [L]

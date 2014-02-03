@@ -1,0 +1,292 @@
+@charset "utf-8";
+/* CSS Document */
+	.music_bar_outer{
+	width:100%;
+	float:left;
+	position:fixed;
+	bottom:0;
+	height: auto;  
+	z-index:8;
+	
+}
+.music_bar{
+	width:997px;
+	height:36px;
+	margin:auto;
+	background:url(<?php echo  $config_var->WEB_TPL_URL; ?>images/music_bar_bg.png) left top no-repeat;
+
+}
+.music_bar-txt{
+	width:350px;
+	height:30px;
+	line-height:30px;
+	margin:0 5px 0 30px;
+	color:#676666;
+	float:left;
+	font-size:15px;
+
+}
+.music_bar-txt span{
+  color:#2c2c2c;
+  float:left;
+  font-size:18px;
+  margin-right:5px;
+   }
+.music_bar-time{
+	width:140px;
+	height:25px;
+	line-height:25px;
+	margin:5px 5px 0 0px;
+	color:#676666;
+	float:left;
+	font-size:20px;
+	text-align:center;
+	background:url(<?php echo  $config_var->WEB_TPL_URL; ?>images/time_bg.png) 0 0 no-repeat;
+
+}
+.music_icons_div{
+	width:170px;
+	height:31px;
+	line-height:31px;
+	margin:3px 5px 0 5px;
+	float:left;
+ }
+.pause, .play, .stop, .next, .prev{
+	width:31px;
+	height:31px;
+	text-align:center;
+	float:left;
+	margin-right:3px;
+}
+.view_artist{
+	width:60px;
+	height:31px;
+	float:left;
+	margin:4px 20px 0 0px;
+}
+.view_artist_txt{
+	width:40px;
+	height:31px;
+	line-height:15px;
+	float:left;
+	color:#010101;
+	font-size:12px;
+
+}
+
+.share_video{
+width:118px;
+height:31px;
+float:left;
+margin:4px 5px 0 5px;
+
+}
+.share_video_txt{
+	width:40px;
+	height:31px;
+	line-height:15px;
+	float:left;
+	color:#010101;
+	font-size:12px;
+
+}
+.music_bar-arrow{
+ width:23px;
+height:23px;
+float:right;
+margin:8px 20px 0 5px;
+
+}
+.music_player_outer{
+	width:100%;
+	float:left;
+	bottom:0;
+	
+}
+.music_player{
+	width:997px;
+	height:366px;
+	margin:auto;
+}
+.music_player_bg{
+	width:997px;
+	height:366px;
+	float: left;
+	background: url(<?php echo  $config_var->WEB_TPL_URL; ?>images/vid_payer_bg.png) left top no-repeat;
+}
+.video_bg{
+	background: url(<?php echo  $config_var->WEB_TPL_URL; ?>images/video_bg.png) no-repeat;
+	widows: 514px;
+	height: 321px;
+	margin:10px 0 0 12px;
+	padding: 15px;
+	float:left;
+}
+.video{
+	float:left;
+}
+.player_playlist_outer{
+	width: 441px;
+	float:left;
+	margin: 10px 0 0 18px;
+}
+.player_playlist_bg_top{
+	background: url(<?php echo  $config_var->WEB_TPL_URL; ?>images/playlist_top.png) no-repeat;
+	width: 431px;
+	height: 35px;
+	float: left;
+	font-family: arial;
+	font-size: 18px;
+	color: #ffffff;
+	line-height: 35px;
+	text-transform: uppercase;
+	padding: 0 0 0 10px;
+	font-weight: bold;
+}
+.player_playlist_bg_cen{
+	background:url(<?php echo  $config_var->WEB_TPL_URL; ?>images/vid_player_playlist_cen.jpg) repeat-y;
+	width: 441px;
+	float: left;
+}
+.player_playlist_bg_bot{
+	background:url(<?php echo  $config_var->WEB_TPL_URL; ?>images/vid_player_playlist_bot.png) no-repeat;
+	width: 441px;
+	height: 35px;
+	float: left;
+}
+.player_playlist_content{
+	width: 441px;
+	float:left;
+	margin:0;
+}
+.player_playlist_text_main{
+	width: 439px;
+	background: url(<?php echo  $config_var->WEB_TPL_URL; ?>images/playlist_tracks_bg.jpg) repeat-x;
+	height: 32px;
+	float: left;
+	margin: 0 0 0 1px;
+}
+
+.player_playlist_text_main .left_text{
+	width: 350px;
+	height: 32px;
+	float: left;
+	font-family: arial;
+	font-size: 13px;
+	line-height: 32px;
+	font-weight: bold;
+	color: #555555;	
+	margin: 2px 0 0 0;
+	text-decoration: none;
+	padding: 0 0 0 10px;
+}
+.player_playlist_text_main .right_text{
+	width: 50px;
+	height: 32px;
+	float: right;
+	font-family: arial;
+	font-size: 13px;
+	line-height: 32px;
+	font-weight: bold;
+	color: #555555;	
+	margin: 0 0 0 10px;
+	text-decoration: none;
+}
+
+.player_playlist_text_main_total{
+	width: 437px;
+	height: 32px;
+	float: left;
+	margin: 0 0 0 2px;
+}
+.player_playlist_text_main_total .left_text{
+	width: 350px;
+	height: 32px;
+	float: left;
+	font-family: arial;
+	font-size: 13px;
+	line-height: 32px;
+	font-weight: bold;
+	color: #555555;	
+	margin: 2px 0 0 0;
+	text-decoration: none;
+	padding: 0 0 0 10px;
+}
+.player_playlist_text_main_total .right_text{
+	width: 50px;
+	height: 32px;
+	float: right;
+	font-family: arial;
+	font-size: 13px;
+	line-height: 32px;
+	font-weight: bold;
+	color: #555555;	
+	margin: 0 0 0 10px;
+	text-decoration: none;
+}
+.player_playlist_btns{
+	width: 437px;
+	height: 32px;
+	float: left;
+	margin: 9px 0 0 2px;
+}
+.player_playlist_btns .btns{
+	width: 39px;
+	height: 16px;
+	float: left;
+	margin: 16px 2px 0 0;
+}
+.player_about_artist_bg_cen{
+	background:url(<?php echo  $config_var->WEB_TPL_URL; ?>images/player_artist_info.png);
+	width: 441px;
+	height:71px;
+	float: left;
+	margin: 10px 0 0 18px;
+}
+
+.player_about_artist_text_born{
+	width: 175px;
+	margin:6px 0 0 12px;
+	float: left;
+	font-family: arial;
+	font-size: 12px;
+	color: #000000;	
+	font-weight: bold;
+}
+.player_about_artist_text_born span{
+	color: #999999;
+	font-size: 12px;
+}
+.player_about_artist_text_form{
+	width: 240px;
+	margin:6px 0 0 12px;
+	float: left;
+	font-family: arial;
+	font-size: 12px;
+	color: #000000;	
+	font-weight: bold;
+}
+.player_about_artist_text_form span{
+	color: #999999;
+	font-size: 12px;
+}
+.player_about_artist_text_bio{
+	width: 28px;
+	margin:0px 0 0 12px;
+	float: left;
+	font-family: arial;
+	font-size: 12px;
+	color: #000000;	
+	font-weight: bold;
+}
+.player_about_artist_text_bio_text{
+	width: 380px;
+	margin:0px 0 0 0;
+	float: left;
+	font-family: arial;
+	font-size: 12px;
+	color: #999999;	
+}
+
+
+

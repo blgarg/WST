@@ -1,0 +1,96 @@
+<?php 
+global $config_var;  
+global $DataSet;
+
+//config URL 
+//$config_var->ADMIN_TPL_URL
+if(isset($_GET['id']) && $_GET['id']!='')
+{
+	$_SESSION['gallery_id']= $_GET['id'];
+	if(is_dir($config_var->UPLOAD_ROOT."images/zip/zipfiles/".$_GET['id']))
+	$images= scandir($config_var->UPLOAD_ROOT."images/zip/zipfiles/".$_GET['id']);
+	else
+	$images=array();
+}
+?>
+<script>
+    var pagination_options = {
+      num_edge_entries: 2,
+      num_display_entries: 2,
+      callback: pageselectCallback,
+      items_per_page:20
+    }
+    function pageselectCallback(page_index, jq){
+      var items_per_page = pagination_options.items_per_page;
+      var offset = page_index * items_per_page;
+	  var new_content = $('#hiddenresult div.result').slice(offset, offset + items_per_page).clone();
+      $('#Searchresult').empty().append(new_content);
+      return false;
+    }
+    function initPagination() {
+      var num_entries = $('#hiddenresult div.result').length;
+      // Create pagination element
+      $("#Pagination").pagination(num_entries, pagination_options);
+    }
+    $(document).ready(function(){      
+      initPagination();
+    });
+</script>
+<div class="pop_text_boxArea" style="float:left;width:100%;padding-bottom:20px;">
+          <div  id="container" ><b style="color:red">* Only Zip Files will Upload</b></div>
+          	<form action="index.php?mod=mod_gallery&view=addImage" method="post" id="zipupload" name="zipupload" enctype="multipart/form-data" onsubmit="return checkvalidation();">
+			<span class="fl-pad">
+                <input type="text" name="filenum" id="filenum"  style="margin:0 0 0 0px"></span>
+				<span class="fl-pad" style="width:400px;">
+				 <div id="filelist"></div> 
+              
+                   <!--  <a id="pickfiles" href="javascript:;">Select files</a> <br/> -->
+                  <!--   <a id="uploadfiles" href="javascript:;">Click to Upload files</a><br/> -->
+			
+			    <!--  
+				<?php // echo Upload_files; ?> 
+				  <input type="file" name="onlyzip" accept="image/jpg,image/gif" style="margin-left: <?php if(isset($_SESSION['lang']) && @$_SESSION['lang']!='turkey'){?> 25px;<?php } else { ?>13px<?php } ?>">
+				-->
+				
+				<input type="hidden" value="zip" name="controller"></span><br/>
+                <input type="button"  id="pickfiles" class="green_btn" value="Upload">
+				<a href="./?mod=mod_gallery&view=default&d=2"><button type="button">
+                    <span style="text-decoration:none;color:#000;">Back</span>
+				</button></a>
+                </form>
+									
+            </div>
+			
+			<div style="float:left;width:100%;">
+	<?php if(count($images)>0){?>		
+	<div id="Searchresult" style="min-height:400px; overflow:hidden;"></div>
+  <table width="100%"><tr><td style="padding-left:400px;">
+<div id="Pagination" class="pagination"></div>
+</td>
+</tr>
+</table>
+
+  <div id="hiddenresult" style="display:none;"> 
+    <?php
+				for($i=2;$i<count($images);$i++){
+				if($images[$i] !== '.' && $images[$i] !== '..' && $images[$i] !== 'Thumbs.db'){
+				//print_r($file);
+			//echo '<img src="gallery/'.$file.'" border="2" style="margin:5px;" />';
+			
+		
+	?>
+	<div class="result" style="float:left;width:190px;padding:0 0 10px 0;">
+				<img title ="<?php echo $images[$i];?>" src="<?php echo $config_var->UPLOAD_URL."images/zip/zipfiles/".$_GET['id']."/".$images[$i];?>" border="2" style="margin:5px;" width="100" height="100" />
+			</br>
+			<b><?php $image = explode(".",$images[$i]) ;
+					$img_name = substr($image[0],0,10);
+					echo $img_name.".".$image[1];		
+			?></b>
+			
+	</div>
+	<?php }	} ?>
+
+   
+  </div>
+  <?php }?>
+</div>		

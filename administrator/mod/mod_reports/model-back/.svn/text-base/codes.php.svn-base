@@ -1,0 +1,51 @@
+<?php
+ob_start();
+include '../../../../settings.php';
+global $config_var;
+include $config_var->WEB_ROOT.'administrator/inc/load.php';
+$Session = new session();
+include $config_var->USER_ROOT.'mod/mod_reports/ajax/_ajax.php';
+
+if(isset($_REQUEST['typeid']))
+{
+switch($_REQUEST['typeid'])
+   {
+   case 1:
+   quaterly();
+   break;
+   case 2:
+   halfyearly();
+   break;
+   case 3:
+   echo "";
+   break;
+   
+   }
+	;
+	
+}
+
+function quaterly()
+{
+?>
+      				<select  class="selectbox" name="quarter" id="quarter" style="width:100%;padding:3px 0 0 6px;"  >
+                    <option value="0" >Select Quarter</option>
+                    <option value="1" >First Quarter</option>
+                    <option value="2" >Second Quarter</option>
+                    <option value="3" >Third Quarter</option>
+                    <option value="4" >Fourth Quarter</option>
+                    </select>
+<?php
+}
+
+function halfyearly()
+{
+?>
+<select  class="selectbox" name="selecthalf" id="selecthalf" style="width:100%;padding:3px 0 0 6px;"  >
+                    <option value="0" >Select Half</option>
+                      <option value="1">First Half</option>
+                        <option value="2">Second Half</option>
+                    </select>
+<?php
+}
+?>

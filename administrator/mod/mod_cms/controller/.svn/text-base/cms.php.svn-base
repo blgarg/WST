@@ -1,0 +1,121 @@
+<?php
+class cms_controller extends JDatabaseMySQL{	
+	  var $modName  = '';
+	  
+	  function runController(){
+		  switch(@$_REQUEST['controller'])
+		  {
+		  
+				case 'add_new_page':
+			/*	echo "<pre>";
+				print_r($_REQUEST);
+				die;*/
+				$model_cms_addNewModel = new model_cms_addNewPage();
+				global $config_var;
+				$objects = new stdClass();
+				
+				$objects->title = strip_tags(@$_REQUEST['page_title']);
+				$objects->text = @ucfirst($_REQUEST['pageText']);
+				$objects->tags = strip_tags(@$_REQUEST['page_meta_tags']);
+				$objects->desc = strip_tags(@$_REQUEST['meta_desc']);
+				//echo "<pre>"; print_r($_REQUEST);die('rohjihithih');
+				
+				if($model_cms_addNewModel->inserData($objects)){
+					@header('Location:index.php?mod=mod_cms&view=default&d=2&s=1');}else{@header('Location:index.php?mod=mod_cms&view=default&d=2&r=1');
+				 }
+				 
+				 
+				break;
+
+				case 'edit_page':
+				global $config_var;
+				$objects = new stdClass();
+				$model_cms_editPage = new model_cms_editPage();
+				//echo "<pre>"; print_r($_REQUEST);
+				$objects->title = strip_tags(@$_REQUEST['english_title']);
+				
+				$objects->page_content = @$_REQUEST['englishText'];
+				$objects->text = @ucfirst($_REQUEST['pageText']);
+				$objects->tags = strip_tags(@$_REQUEST['page_meta_tags']);
+				$objects->desc = strip_tags(@$_REQUEST['meta_desc']);
+				$objects->page_id = @$_REQUEST['page_id'];
+				if($model_cms_editPage->saveData($objects)){
+				@header('Location:index.php?mod=mod_cms&view=default&d=2&s=2');}else{@header('Location:index.php?mod=mod_cms&view=default&d=2&r=5');
+					exit();
+				 }
+				break;
+				
+				
+
+				case 'delete':
+				$model_mangeModel_delete = new model_cms_default();
+				$objects = new stdClass();
+				$objects->model_id = @$_REQUEST['model_id'];
+				$modelIds = '0';
+				if(count($objects->model_id)>0){
+					for($i=0;$i<count($objects->model_id);$i++){
+						$modelIds .= ','.$objects->model_id[$i];
+					}
+					
+				}
+				if($model_mangeModel_delete->deleteData($modelIds)){
+					@header('Location:index.php?mod=mod_cms&view=default&d=3&s=3');}else{@header('Location:index.php?mod=mod_cms&view=default&d=3&r=3');
+				 }
+				 
+				break;
+				
+				case 'activate':
+				$model_model_active = new model_cms_default();
+				$objects = new stdClass();
+				$objects->model_ids = @$_REQUEST['model_id'];
+				$modelIds = '0';
+				if(count($objects->model_ids)>0){
+					for($i=0;$i<count($objects->model_ids);$i++){
+						$modelIds .= ','.$objects->model_ids[$i];
+					}
+					
+				}
+				
+			
+				if($model_model_active->changeStatus($modelIds,'activate')){
+					@header('Location:index.php?mod=mod_cms&view=default&d=3&s=4');}else{@header('Location:index.php?mod=mod_cms&view=default&d=3&r=5');
+				 }
+				break;
+
+				case 'deactivate':
+				$model_model_deactive = new model_cms_default();
+				$objects = new stdClass();
+				$objects->model_ids = @$_REQUEST['model_id'];
+				$modelIds = '0';
+				if(count($objects->model_ids)>0){
+					for($i=0;$i<count($objects->model_ids);$i++){
+						$modelIds .= ','.$objects->model_ids[$i];
+					}
+					
+				}
+
+				if($model_model_deactive->changeStatus($modelIds,'deactivate')){
+					@header('Location:index.php?mod=mod_cms&view=default&d=3&s=5');}else{@header('Location:index.php?mod=mod_cms&view=default&d=3&r=5');
+				 }
+				break;
+
+				
+
+
+			}
+	  }
+	  
+	  function unlink_function($id){
+		
+		$this->sql ='SELECT imagehdpi,imageshdpi,imageldpi,imagemdpi,imagexhdpi FROM mgl_models WHERE model_id= "'.$id.'" ';
+			$this->query();
+			return $this->loadAssoc();
+		 }  
+  
+	  
+}
+
+
+
+
+?>

@@ -1,0 +1,130 @@
+@charset "utf-8";
+/* CSS Document I-A-S */
+body {
+	margin:0;
+	padding:0;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:14px;
+	color:#3e3e3e;
+}
+img {
+	border:0 none;
+}
+.fl {
+	float:left;
+}
+.fr {
+	float:right;
+}
+.clr {
+	clear:both;
+}
+h1,h2,h3,h4,h5,h6{margin:0; padding:0;}
+h1{font-size:30px;}
+h2{font-size:25px;}
+h3{font-size:20px;}
+h4{font-size:18px;}
+h5{font-size:15px;}
+h6{font-size:12px;}
+
+/*Gate Pass*/
+#container {
+	width:100%;
+	height:auto;
+	float:left;
+}
+#header {
+	width:980px;
+	height:350px;
+	margin:auto;
+	padding:5px;
+}
+.header-top {
+	width:980px;
+	height:175px;
+	float:left;
+	border-bottom:1px solid #979b99;
+	margin-bottom:20px;
+}
+.header-top-lt {
+	width:110px;
+	height:180px;
+	float:left;
+
+}
+ .logo {
+	width:92px;
+	height:105px;
+	float:right;
+	margin:10px 0 0 0;
+}
+
+.header-top-rt {
+	width:860px;
+	height:180px;
+	float:left;
+
+}
+.header-btm {
+	width:980px;
+	height:150px;
+	float:left;
+	text-align:center;
+	font-size:15px;
+/*	border-bottom:1px solid #979b99;*/
+	font-weight:bold;
+}
+.header-btm  span{
+	font-size:15px;
+	font-weight:normal;
+}
+
+#content {
+	width:100%;
+	height:auto;
+	float:left;
+	margin-bottom:20px;
+}
+
+.content-txt {
+	width:980px;
+	min-height:350px;
+	margin:auto;
+	margin-top:10px;
+	font-size:17px;
+	clear:both;
+}
+.content-txt  table{
+	width:100%;
+	float:left;
+	font-size:15px;
+	font-weight:bold;
+	margin-top:8px;
+	
+}
+.content-txt  table .gp-hdr{
+	font-size:15px;
+	font-weight:bold;
+	border-top:1px solid #979b99;
+	border-bottom:1px solid #979b99;
+	
+}
+
+
+.gp-btm{
+	width:90%;
+	font-size:15px;
+	font-weight:bold;
+	border-bottom:1px solid #979b99;
+	clear:both;
+	margin:auto;
+	
+}
+.gp-btm-txt{
+	width:980px;
+	font-size:15px;
+	clear:both;
+	margin:auto;
+	
+}
+

@@ -1,0 +1,221 @@
+ <?php 
+	
+	if(isset($_SESSION['user_id']) && $_SESSION['user_id']!='')
+	{
+		@header("Location:?mod=mod_index&view=home&form=agree&s=1");
+		die;
+	}
+	global $model;
+	global $config_var;
+	$images = $model->getRecentImages();
+	$videos =$model-> getRecentVideos();
+	$tourheader =$model->getTourHeader();
+	
+ ?>
+ <script>
+	function link()
+	{
+		window.location='<?php echo $config_var->WEB_URL?>?mod=mod_joinus&view=default&s=6';
+	}
+	$(function(){
+		$("#barguidep p").each(function(){
+			$(this).css("margin","0px");
+		});
+		$("#travelguidep p").each(function(){
+			$(this).css("margin","0px");
+		});
+		$("#tourheaderp p").each(function(){
+			$(this).css("margin","0px");
+		});
+	});
+ </script>
+ <div class="content" style="padding-top:0;">
+   		<div class="inner-hdr t-align-c">
+        	<img src="<?php echo $config_var->WEB_TPL_URL?>images/welcome-txt.png" alt="" />
+        </div>
+    	<!--Content Text-->
+    	<div class="content-txt">
+            
+            <div class="img-slider-outer">
+            	<div class="img-slider">
+                	<img src="<?php echo $config_var->WEB_TPL_URL?>images/h-img1.jpg" alt="" />
+					
+                </div>
+                
+                <div class="h-txt">
+                	<span id="tourheaderp"><?php echo $tourheader[2]['page_content']; ?></span> 
+                </div>
+            </div>
+
+            
+            <div class="join-new-btn">
+                	<a href="<?php echo $config_var->WEB_URL;?>?mod=mod_joinus&view=default&s=6">Join Now to See More of These Featured Models</a>
+             </div>
+             
+             
+             <div class="f-models">
+             	<div class="f-models-hdr">Featured Models</div>
+                
+                <!--Models Image Outer Row-->
+			
+                <div class="models-img-outer" onclick="window.location='<?php echo $config_var->WEB_URL?>?mod=mod_joinus&view=default&s=6'">
+					<?php	$i=1;foreach ($images as $data) {?>
+                	<div class="models-img">
+                    	<div class="models-img-box">
+                        	<!--<img src="<?php// echo $config_var->WEB_TPL_URL?>images/f-m1.jpg" alt="" />-->
+								<img  height="200" width="150" src="<?php echo $config_var->UPLOAD_URL."images/front_end/".$data['image_thumbnail']; ?>" alt="" />
+                        </div>
+                        <?php //echo $data['image_title']; ?>
+							<?php 
+							   $length = strlen($data['image_title']);
+							   if($length >= 20){
+							 $barname=substr($data['image_title'],0,20).'....';
+							echo $barname= strtoupper(strtolower($barname));
+							   }else{
+							   $barname = $data['image_title'];
+							   echo $barname= strtoupper(strtolower($barname));
+							   }
+							   ?>
+						<br />
+						<span><?php 
+							//echo $config_var->UPLOAD_URL."images/".$DataSet['result'][$j]['id'] ;
+							$country = $model->getCountryName($data['country_id']);
+							echo $country[0]['country_name'];
+								 /*if(is_dir($config_var->UPLOAD_ROOT."images/".$data['id']))
+								 {
+									$countFiles = scandir($config_var->UPLOAD_ROOT."images/".$data['id']);
+									$cnt=0;foreach($countFiles as $img){
+										if($img != "." && $img != ".." && $img != "thumbnails" && $img != "thumbs.db")
+										{
+				
+										$ext = explode(".",$img);
+										if($ext['1'] == "jpg" || $ext['1'] == "png" ||$ext['1'] == "gif")
+										$cnt++ ;
+										
+										}
+				
+									}
+								echo $cnt ;
+								}else {echo "0";} echo " images";*/ ?>
+									</span>
+                    </div>
+                    
+                    
+                    
+                    
+                    <?php 
+						if($i%5==0 && count($images)>5)
+						{
+							echo '</div><div class="models-img-outer" onclick="link();">';
+						}
+					$i++;
+					} ?>
+                    
+                    
+                </div>
+				
+                 
+                <!--//Models Image Outer Row-->
+                
+             </div>
+             
+             <div class="inner-hdr t-align-c mt-20">
+                <img alt="" src="<?php echo $config_var->WEB_TPL_URL?>images/see-sexy-girls-txt.png" alt=""/>
+            </div>
+             
+             <div class="f-models mt-30">
+             	<div class="f-models-hdr">HARDCORE VIDEOS</div>
+                
+                <!--Models Image Outer Row-->
+                <div class="models-img-outer">
+                	<?php	foreach ($videos as $data) {?>
+                	<div class="models-video">
+				
+                    	<span><?php echo $data['video_title'];?></span>
+                        <div class="video">
+                        	<img height="280" width="460" onclick="link();" src="<?php echo $config_var->UPLOAD_URL."videos/images/".$data['image']; ?>" alt="" />
+                        </div>
+					
+                    </div>
+                    	<?php } ?>
+                    
+                	
+                   
+                </div>
+                <!--//Models Image Outer Row-->
+             </div>
+             
+             <!--Party Girls Start Here-->
+              <div class="inner-hdr t-align-c mt-20">
+                <img alt="" src="<?php echo $config_var->WEB_TPL_URL?>images/see-party-girls-txt.png" alt=""/>
+           	 </div>
+             
+             <div class="party-girls-outer">
+             	<div class="party-girl-img">
+                	<img src="<?php echo $config_var->WEB_TPL_URL?>images/p-girl1.jpg" alt="" />
+                </div>
+                
+                <div class="party-girl-img">
+                	<img src="<?php echo $config_var->WEB_TPL_URL?>images/p-girl2.jpg" alt="" />
+                </div>
+                
+                <div class="party-girl-img">
+                	<img src="<?php echo $config_var->WEB_TPL_URL?>images/p-girl3.jpg" alt="" />
+                </div>
+                
+                <div class="party-girl-img m-r-none">
+                	<img src="<?php echo $config_var->WEB_TPL_URL?>images/p-girl4.jpg" alt="" />
+                </div>
+             
+             </div>
+             <!--//Party Girls End Here-->
+             
+             
+             
+             
+              <!--Member Features-->
+                <div class="member-feau-outer">
+                	<div class="member-feau-hdr"><img src="<?php echo $config_var->WEB_TPL_URL?>images/member-feau-txt.png" alt="" /></div>
+                    <div class="member-feau-con fl">
+                    	<div class="member-feau-txt-hdr">Travel Guide</div>
+                        <div class="member-feau-txt">
+                        	<div class="img"><img src="<?php echo $config_var->WEB_TPL_URL?>images/travel-guide-img1.jpg" alt="" /></div>
+                            <span id="travelguidep" style="text-align:justify;">
+								<?php echo $tourheader[0]['page_content']; ?>
+
+                            </span>
+                        </div>
+                    
+                    </div>
+                    
+                    
+                    <div class="member-feau-con fr">
+                    	<div class="member-feau-txt-hdr">Bar Guide</div>
+                        <div class="member-feau-txt">
+                        	<div class="img"><img src="<?php echo $config_var->WEB_TPL_URL?>images/travel-guide-img2.jpg" alt="" /></div>
+							<span id="barguidep" style="text-align:justify;">
+                            	<?php echo $tourheader[1]['page_content']; ?>
+
+                            </span>    
+                        </div>
+						
+                    </div>
+                    
+                
+                </div>
+                 <!--//Member Features-->
+            
+        </div>
+        <!--//Content Text-->
+    </div>
+     <!--//ConTent-->
+	            <div align="center" style="padding: 5 20px; text-align: center;  color: IndianRed; font-size: 17px;">
+				        <div> <h1>For billing support</h1></div>
+                    	  Please visit <a href="https://epoch.com/billingsupport" target="_blank" style="color:background !important;" >EPOCH.COM</a>, our authorized sales agent.
+				One and or three month memberships re-bill at their
+				initial price either monthly or every 3 months 
+				respectively if not canceled.
+                    
+	</div>
+<div class="clr"></div>    
+</div>

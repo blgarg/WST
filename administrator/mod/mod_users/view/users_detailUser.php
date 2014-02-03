@@ -1,0 +1,154 @@
+<?php 
+global $config_var;  
+global $DataSet;
+//config URL 
+
+if((isset($_REQUEST['user_id']))&&(@$_REQUEST['user_id'] != '')){ 
+	$model_users_detailUser = new model_users_detailUser();
+	$userdata = $model_users_detailUser->getUserData($_REQUEST);
+   if(trim($userdata['stateText']) != '') { 
+    $state = $userdata['stateText'];
+   }else{
+      $state = $model_users_detailUser->getStateName($userdata['state']);
+   }
+	$type = 'Musician';
+	if($userdata['type']=='2'){
+	$type = 'Fan';
+	}
+}          
+
+
+?>
+
+
+<!--  start content-table-inner ...................................................................... START -->
+	<div id="content-table-inner" class="Add_New_Web_Page">
+	 <form  method="post" id="adddUserFrm" name="adddUserFrm" enctype="multipart/form-data" >
+    <table border="0" width="100%" cellpadding="0" cellspacing="0">
+	<tr valign="top">
+    <td>
+    <table border="0" cellpadding="0" cellspacing="0"  id="id-form">
+            <tr>
+               <th valign="top">First Name :</th>
+                <td><?php echo $userdata['user_firstname'];?></td>
+            </tr>
+          <tr>
+            <th valign="top">Last Name :</th>
+            <td><?php echo $userdata['user_lastname'];?></td>
+          </tr>
+          
+          <tr>
+            <th valign="top">Country :</th>
+            <td><?php echo $userdata['name'];?></td>
+          </tr>
+          
+          <tr>
+            <th valign="top">State :</th>
+            <td><?php echo $state;?></td>
+          </tr>
+          
+          <tr>
+            <th valign="top">Phone Number :</th>
+            <td><?php echo $userdata['user_phonenum'];?></td>
+          </tr>
+          <tr>
+            <th valign="top">Email :</th>
+            <td><?php echo $userdata['user_email'];?></td>
+          </tr>
+          
+           <tr>
+            <th valign="top">Address :</th>
+            <td><div style="width:565px;" class="breakword"><?php echo $userdata['user_address'];?></div></td>
+          </tr>
+       
+          <tr>
+            <th valign="top" class="break-word">Bio :</th>
+            <td><div style="width:565px;" class="breakword"><?php echo trim($userdata['bio'])!='' ? $userdata['bio'] : 'N/A' ;?></div></td>
+          </tr>
+          
+          <tr>
+            <th valign="top">Biggest Inspiration :</th>
+            <td><div style="width:565px;" class="breakword"><?php echo trim($userdata['insp']) !='' ? $userdata['insp'] : 'N/A';?></div></td>
+          </tr>
+          
+           <tr>
+            <th valign="top">Type :</th>
+            <td><?php echo $type;?></div></td>
+          </tr>
+          
+          
+          <tr>
+            <th valign="top">Facebook :</th>
+            <td><?php echo trim($userdata['facebook_url'])!='' ? $userdata['facebook_url'] : 'N/A' ;?></td>
+          </tr>
+          
+          <tr>
+            <th valign="top">Twitter :</th>
+            <td><?php echo trim($userdata['twitter_url'])!='' ? $userdata['twitter_url'] : 'N/A' ;?></td>
+          </tr>
+
+        </table>
+      
+	<!-- end id-form  -->
+
+	</td>
+	<td align="left">
+
+	<!--  start related-activities -->
+    
+    <div id="related-activities">
+		
+		<!--  start related-act-top -->
+		<div id="related-act-top">
+		<a href="#"  id="Categories_top" style="cursor:text">RECENT USERS </a>
+        </div>
+		<!-- end related-act-top -->
+		
+		<!--  start related-act-bottom -->
+		<div id="related-act-bottom">
+		
+			<!--  start related-act-inner -->
+			<div id="related-act-inner" style="float:left">
+			 		<ul>
+					<?php 
+						  $JDatabaseMySQL = new JDatabaseMySQL();
+						 $JDatabaseMySQL->sql = "SELECT * FROM mgl_users WHERE user_role != 'admin' ORDER BY user_id DESC LIMIT 0,10";
+						  $JDatabaseMySQL->query();
+						  $users = $JDatabaseMySQL->loadAssoc();
+						 for($i=0;$i<count($users); $i++){
+						 $userName= $users[$i]['user_firstname'].' '.$users[$i]['user_lastname'];
+						 if(strlen($userName)>50){
+						 $userName=substr($userName,0,50).'....';
+						 }
+						//  $users = @explode(",",$PAGE_SEC_SET['categories']);
+						 ?>
+					
+                   
+							<li><div id="cat_name" class="breakword"><a href="?mod=mod_users&view=detailUser&user_id=<?php echo $users[$i]['user_id']; ?>&d=2"><?php  echo ucfirst(@$userName);?></a></div></li> 
+                        
+                         <?php } ?>                  
+										                      
+					</ul>
+				</div>
+				
+			</div>
+			<!-- end related-act-inner -->
+			<div class="clear"></div>
+		
+		</div>
+        
+	<!-- End related activities -->
+		
+</td>
+</tr>
+<tr>
+<td><img src="<?php echo $config_var->ADMIN_TPL_URL;?>/images/shared/blank.gif" width="695" height="1" alt="blank" /></td>
+<td></td>
+</tr>
+</table>
+ </form> 
+ 
+<div class="clear"></div>
+ 
+
+</div>

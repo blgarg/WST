@@ -1,0 +1,50 @@
+<?php 
+ob_start();
+include '../../../../settings.php';
+global $config_var;
+include $config_var->WEB_ROOT.'administrator/inc/load.php';
+$Session = new session();
+$str=$_REQUEST['str'];
+$contents="<span style='font-weight:bold'>Book Name</span>,<span style='font-weight:bold'>Cost Price</span>,<span style='font-weight:bold'>Sell Price</span>,<span style='font-weight:bold'>Entered Date</span>,<span style='font-weight:bold'>Party</span>,<span style='font-weight:bold'>Writer</span>,<span style='font-weight:bold'>Book Description</span>\n\n";
+$user_query = mysql_query("$str");
+while($row = mysql_fetch_array($user_query))
+{
+if($row['grant_recieved']==1)
+{
+$recievedgrant="State";
+}
+else if($row['grant_recieved']==2)
+{
+$recievedgrant="Center";
+}
+$writertitle=get_all_writers($row['royality_writer_id']);
+$partytitle=get_all_party($row['party_id']);
+$contents.=$row['book_name'].",";
+$contents.=$row['party_price'].",";
+$contents.=$row['book_price'].",";
+$contents.=$row['created_Date'].",";
+$contents.=$partytitle.",";
+$contents.=$writertitle.",";
+$contents.=str_replace(',', ';', $row['book_name'])."\n";;
+}
+$contents2=strip_tags($contents); // remove html and php tags etc.
+//echo $contents2; die;
+header("Content-Type: application/csv");
+header("Content-Disposition: attachment; filename=export.csv");
+//Header("Content-Disposition: attachment; filename=export2.csv");
+print $contents2;
+function get_all_writers($id)
+{
+$str="select * from mgl_writers where writer_id=$id";
+$rs=mysql_query($str);
+$row=mysql_fetch_array($rs);
+return $row['writer_name'];
+}
+function get_all_party($id)
+{
+$str="select * from mgl_party where party_id=$id";
+$rs=mysql_query($str);
+$row=mysql_fetch_array($rs);
+return $row['party_title'];
+}
+?> 

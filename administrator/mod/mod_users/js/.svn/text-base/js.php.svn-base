@@ -1,0 +1,7 @@
+<?php function mod_js(){ global $jsPath;?>
+<script src="<?php echo $jsPath;?>validateForms.js" type="text/javascript"></script>
+<script src="<?php echo $jsPath;?>otherJstuff.js" type="text/javascript"></script>
+
+</script>
+<?php }?>
+

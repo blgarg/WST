@@ -1,0 +1,78 @@
+<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table" style="float:left">
+				<tr>
+				<td  width="50%" height="350" valign="top">
+				<div id="accordion" style="width:99%;float:left;margin-top:-5px;z-index:1;margin-left:-5px;padding-left:0px;">
+					<h3><a href="#" style="color:#94B52C">Dash board1</a></h3>
+					<div>	
+					<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna. </p>
+					</div>
+					<h3><a href="#" style="color:#94B52C">Dash board2</a></h3>
+					<div>
+					<p>Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In suscipit faucibus urna. </p>
+					</div>
+					<h3><a href="#" style="color:#94B52C">Dash board3</a></h3>
+					<div>
+					<p>Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis. Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui. </p>
+					<ul>
+					<li>List item one</li>
+					<li>List item two</li>
+					<li>List item three</li>
+					</ul>
+					</div>
+					<h3><a href="#" style="color:#94B52C">Dash board4</a></h3>
+					<div>
+					<p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. </p><p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+					<p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. </p><p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+					<p>Cras dictum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean lacinia mauris vel est. </p><p>Suspendisse eu nisl. Nullam ut libero. Integer dignissim consequat lectus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+					
+					</div>
+			</div>
+				</td>
+				<td width="50%" height="350" valign="top" align="left" style="padding:0px 0px 0px 0px;">
+
+					<table cellpadding="5" cellspacing="5" align="left" width="100%">
+					<tr>
+									<td align="center"><a href="#" title="Manage Wep Page" class="info-tooltip">
+									<img src="./template/system/images/dashboard/web_pages.png"   width="80" height="80" border="0"/></a></td>
+									<td align="center"><a href="#" title="Create new page" class="info-tooltip">
+									<img src="./template/system/images/dashboard/add_page.png"   width="80" height="80" border="0"/></a></td>
+									<td align="center"><a href="#" title="Manage Menu(Create menu,update menu,delete menus..)" class="info-tooltip">
+									<img src="./template/system/images/dashboard/menu.png"   width="80" height="80" border="0"/></a></td>
+									<td align="center"><a href="#" title="Manage User :- Add user,update user" class="info-tooltip">
+									<img src="./template/system/images/dashboard/manage_user.png"   width="80" height="80" border="0"/></a></td>
+									
+					</tr>
+					<tr>
+									<td align="center"><a href="#" title="Manage Wep Page" class="info-tooltip">Manage Web Pages</a></td>
+									<td align="center"><a href="#" title="Create new page" class="info-tooltip">Create Page</a></td>
+									<td align="center"><a href="#"  title="Manage Menu(Create menu,update menu,delete menus..)" class="info-tooltip">Manage Menus</a>
+									</td>
+									<td align="center"><a href="#" title="Manage User :- Add user,update user" class="info-tooltip">Manage Users</a></td>
+									
+					</tr>
+					<tr><td width="100%" colspan="4">&nbsp;</td></tr>
+					<tr>
+									<td align="center"><a href="#" title="Add new user" class="info-tooltip">
+									<img src="./template/system/images/dashboard/add_user.png"  width="80" height="80" border="0"/></a></td>
+									<td align="center"><a href="#" title="Global settings" class="info-tooltip">
+									<img src="./template/system/images/dashboard/global_settings.png"  width="80" height="80" border="0"/></a></td>
+									<td align="center"><a href="#" title="Manage Media" class="info-tooltip">
+									<img src="./template/system/images/dashboard/media.png"   width="80" height="80" border="0"/></a></td>
+									<td align="center"><a href="#" title="Manage Categories" class="info-tooltip">
+									<img src="./template/system/images/dashboard/category.png"  width="80" height="80" border="0"/></a></td>
+					</tr>
+					<tr>
+									<td align="center"><a href="#" title="Add new user" class="info-tooltip">Add User</a></td>
+									<td align="center"><a href="#" title="Global settings" class="info-tooltip">Global Setting</a></td>
+									<td align="center"><a href="#" title="Manage Media" class="info-tooltip">Manage Media</a></td>
+									<td align="center"><a href="#" title="Manage Categories" class="info-tooltip">Manage Category</a></td>
+									
+									
+					</tr>
+								
+					</table>
+				</td>
+				
+							</tr>
+			
+				</table>

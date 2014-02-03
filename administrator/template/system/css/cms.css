@@ -1,0 +1,35 @@
+.Add_New_Web_Page{}
+
+.Add_New_Web_Page #page_title
+{   width: 685px;
+	height: 25px;
+	font-size:14px;
+	padding:0px 0px 0px 6px;
+	border: 1px solid #d7d7d7;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	line-height:24px;
+		}
+		
+.mainform input[type="checkbox"]
+{   
+	float:left;	}		
+	
+.Add_New_Web_Page #page_meta_tags,#meta_desc
+{
+	width: 685px;
+	height: 50px;
+	font-size:14px;
+	padding:6px 6px 0px 6px;
+	border: 1px solid #d7d7d7;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+}
+.Add_New_Web_Page ul{ list-style:none !important;list-style-type:none;background:none !important;float:left;}
+.Add_New_Web_Page ul li{ padding:0px 0px 10px 0px; margin:0px 0px 0px 15px;list-style:none !important;list-style-type:none !important;float:left;}
+.Add_New_Web_Page ul li #checkbox{ width:20px;margin:0px 5px 0px 2px;cursor:pointer;float:left}	
+.Add_New_Web_Page ul li #cat_name{ width:230px;margin:0px 0px 0px 10px;float:left}	
+
+.Add_New_Web_Page #related-act-top #Categories_top{ float:left;margin:15px 0px 10px 15px;color:#FEFEFE;text-transform:uppercase !important;}

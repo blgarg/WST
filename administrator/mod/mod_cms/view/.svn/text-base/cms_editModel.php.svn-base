@@ -1,0 +1,212 @@
+<?php 
+global $config_var;  
+global $DataSet;
+//config URL 
+//$config_var->ADMIN_TPL_URL
+	if((isset($_REQUEST['model_id']))&&(@$_REQUEST['model_id'] != '')){ 
+	 $modelId = (int)@$_REQUEST['model_id']; 
+	 $model_cms_editModel = new model_cms_editModel();
+	 $model = $model_cms_editModel->getModelData($_REQUEST);
+	 
+	  //$DOB = explode("/",@$model->model_dob);
+	  $stats = explode(",",@$model->Stats);
+	  //$deceased = explode("/",@$model->Deceased);
+	  			
+}  
+$model_cms_editModel = new model_cms_editModel();
+$countryList = $model_cms_editModel->countryList($_REQUEST); 
+  
+?>
+<style>
+.DOB{ height: 25px;
+	font-size:14px;
+	padding:0px 0px 0px 6px;
+	border: 1px solid #d7d7d7;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	line-height:24px; }
+	.stats{ height: 25px;
+	font-size:14px;
+	padding:0px 0px 0px 6px;
+	border: 1px solid #d7d7d7;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	line-height:24px; }
+
+
+</style>
+<!--  start content-table-inner ...................................................................... START -->
+	<div id="content-table-inner" class="Add_New_Web_Page">
+	 <form action="./index.php?mod=mod_cms&view=editModel&m=1" method="post" id="editmodelFrm" name="editmodelFrm" enctype="multipart/form-data" onSubmit="return checkEditBanner();">
+    <table border="0" width="100%" cellpadding="0" cellspacing="0">
+	<tr valign="top">
+  <td style="width:73%">
+    <table border="0" cellpadding="0" cellspacing="0"  id="id-form">
+            <tr>
+                <th valign="top">First Name<span class="red">*</span> :</th>
+                
+                <td><input type="text"  name="modelName"  id="modelName" maxlength="50" class="textbox" value="<?php echo @$model->model_name;?>"/></td>
+            </tr>
+            <tr>
+                <th valign="top">Last Name<span class="red">*</span> :</th>
+                <td><input type="text"  name="model_lname" value="<?php echo @$model->model_lname;?>"  id="model_lname" maxlength="50" class="textbox"/></td>
+            </tr>
+                     
+          <tr>
+            <th valign="top">Birth Date <span class="red">*</span>:</th>
+            
+            <td><input type="text" readonly="readonly" name="d_b_o" value="<?php echo @$model->model_dob; ?>"  id="DOB_datepicker"  maxlength="12" size="12" class="DOB" /></td>
+           </tr>
+           <tr>
+
+        
+        <!--<tr>
+                <th valign="top">Place of Birth <span class="red">*</span>:</th>
+                <td><input type="text"  name="Birthplace"  id="Birthplace" value="<?php //echo @$model->Birthplace;?>" maxlength="50" class="textbox"/></td>
+            </tr>-->
+        <tr>
+                <th valign="top">Stats  <span class="red">*</span>:</th>
+                <td>
+                 <input type="text" name="Stats_height" value="<?php echo $stats[0]; ?>" id="Stats_height" maxlength="8" size="8" class="DOB" /><strong><span style="color:#999999"> height(5'4 1/4")</span></strong>
+                <input type="text" name="Stats_weight" value="<?php echo $stats[1]; ?>" id="Stats_weight" maxlength="7" size="7" class="DOB" /><strong><span style="color:#999999"> weight(128 lbs)</span></strong>
+                <input type="text" name="Stats_measurement" value="<?php echo $stats[2]; ?>" id="Stats_measurement" maxlength="15" size="15" class="DOB" /><strong><span style="color:#999999"> measurement(32-23-32.2)</span></strong></td>
+            </tr>
+       <tr>
+                <th valign="top">Country<span class="red">*</span>:</th>
+                <td><select name="Country"  id="Country" class="selectbox"/>
+                    <option value="0">Select Country</option> 
+                    
+                    <?php $country = $model->country; for($i=0;$i<count($countryList);$i++){ ?>
+                   <option value="<?php echo $countryList[$i]['name']; ?>" <?php if($countryList[$i]['name'] == $country){ ?> selected="selected" <?php } ?>><?php echo $countryList[$i]['name']; ?></option>
+                    <?php } ?>
+                    </select></td>
+       </tr> 
+         <tr>
+                <th valign="top">Appeared Date<span class="red">*</span> :</th>
+                <td>
+                <?php include_once $config_var->LIB_WEB_ROOT.'Helper.php'; $monthobj = Helper::getMonths(@$model->appear_month); ?>
+                <select  name="appear_month" id="appear_month" class="DOB" style="width:70px;" ><?php echo $monthobj; ?></select>
+                &nbsp;&nbsp;
+                <input type="text" name="appear_year" value="<?php echo @$model->appear_year;?>" id="appear_year" maxlength="4" size="5" class="DOB" />
+                &nbsp;<strong><span style="color:#999999">&nbsp;Example: month , year</span></strong></td>
+        </tr>   
+                
+        <tr>
+                <th valign="top">Deceased Date:</th>
+                <td><input type="text" readonly="readonly" name="Deceased" value="<?php echo @$model->Deceased; ?>"  id="Deceased_datepicker" maxlength="12" size="12" class="DOB" /></td>
+            </tr>    
+        <tr>
+                <th valign="top">Photographer :</th>
+                <td><input type="text"  name="Photographer" value="<?php echo @$model->Photographer;?>"  id="Photographer" maxlength="50" class="textbox"/></td>
+            </tr>
+        <tr>
+                <th valign="top">Cause of death :</th>
+                <td>
+                    <textarea style="font-size:12px;"  name="CauseDeath"  id="CauseDeath" ><?php echo @$model->CauseDeath; ?></textarea></td>
+            </tr>    
+          <tr>
+            <th valign="top">Model Images :</th>
+            <td><!--<p><label style="color:#999999;">Multiple Image uploading</label><br />
+             <input type="file" name="images[]" class="multi" accept="gif|jpg|bmp|png|gif"  /></p>-->
+             <?php
+			  $imagehdpi = $model->imagehdpi;
+			  $imageshdpi = $model->imageshdpi;
+			  $imageldpi = $model->imageldpi;
+			  $imagemdpi = $model->imagemdpi;
+			  $imagexhdpi = $model->imagexhdpi;
+			  
+				$imagepathhdpi = $config_var->UPLOAD_URL.'user/thumb/'.$imagehdpi;
+				$imagePathshdpi = $config_var->UPLOAD_URL.'user/thumb/'.$imageshdpi;
+				$imagePathldpi = $config_var->UPLOAD_URL.'user/thumb/'.$imageldpi;
+				$imagePathmdpi = $config_var->UPLOAD_URL.'user/thumb/'.$imagemdpi;
+				$imagePathxhdpi = $config_var->UPLOAD_URL.'user/thumb/'.$imagexhdpi;
+				
+				$noimagePath = $config_var->UPLOAD_URL.'user/original/no_image.jpg';
+			  ?>
+             <img src="<?php if($imagehdpi != ''){ echo $imagepathhdpi; }else{ echo $noimagePath; } ?>" alt="hdpi" title="hdpi"  />
+             <img src="<?php if($imageshdpi != ''){ echo $imagePathshdpi; }else{ echo $noimagePath; } ?>" alt="shdpi" title="shdpi"/>
+             <img src="<?php if($imageldpi != ''){ echo $imagePathldpi; }else{ echo $noimagePath; } ?>" alt="ldpi" title="ldpi"  />
+             <img src="<?php if($imagemdpi != ''){ echo $imagePathmdpi; }else{ echo $noimagePath; } ?>" alt="mdpi" title="mdpi"  />
+             <img src="<?php if($imagexhdpi != ''){ echo $imagePathxhdpi; }else{ echo $noimagePath; } ?>" alt="xhdpi" title="xhdpi"  />
+                <br />
+             hdpi image(480*800) &nbsp;&nbsp;<input type="file" name="imagehdpi_800"  accept="gif|jpg|png|gif"  /><br /><br />
+             shdpi image(480*854) <input type="file" name="imagehdpi_854"  accept="gif|jpg|png|gif"  /><br /><br />
+             ldpi image (240*320) &nbsp;&nbsp;&nbsp;<input type="file" name="imageldpi"  accept="gif|jpg|png|gif"  /><br /><br />
+             mdpi image(320*480) &nbsp;<input type="file" name="imagemdpi"  accept="gif|jpg|png|gif"  /><br /><br />
+             xhdpi Image(600*1024) <input type="file" name="imagetab"  accept="gif|jpg|png|gif"  /><br /><span style="color:#999999"><strong>Allowed Image Formats</strong> : jpg,png,gif</span></td>
+        	  </tr>
+        
+        <tr>
+            <th>&nbsp;</th>
+            <td valign="top">
+            	<input type="hidden" name="model_id" value="<?php echo @$model->model_id;?>"  />
+                <input type="hidden" name="controller" value="editModel"  />
+                <input type="hidden" name="mod" value="mod_cms"  />
+                <input type="button" value="" class="form-submit"  name="button" onclick="checkEditBanner();" style="cursor:pointer;"/>
+                <input type="button" value="" class="form-reset"  onclick="window.location.href='./?mod=mod_cms&view=default&m=1'"  style="cursor:pointer;"/>
+            </td>
+            </tr>
+        </table>
+      
+	<!-- end id-form  -->
+
+	</td>
+	<td align="left">
+
+	<!--  start related-activities -->
+	<?php /*<div id="related-activities">
+		
+		<!--  start related-act-top -->
+		<!--<div id="related-act-top">
+		<a href="#"  id="Categories_top" style="cursor:text">Latest New Model</a>
+        </div>-->
+		<!-- end related-act-top -->
+		
+		<!--  start related-act-bottom -->
+		<div id="related-act-bottom">
+		
+			<!--  start related-act-inner -->
+		<div id="related-act-inner" style="float:left">
+			 		 
+						  $JDatabaseMySQL = new JDatabaseMySQL();
+						  $JDatabaseMySQL->sql = "SELECT * FROM mgl_models order by model_id DESC limit 10";
+						  $JDatabaseMySQL->query();
+						  $latestMOdel = $JDatabaseMySQL->loadAssoc();
+						  ?>
+					<ul>
+                    <?php   $j = 0;
+					        for($i=0;$i<count($latestMOdel);$i++): $j++;?>
+							<li><div id="checkbox"><?php echo @$j;?></div>
+                            <div id="cat_name" class="breakword">
+							<a href="./?mod=mod_cms&view=ViewBanner&m=1&bannerId=<?php echo $latestMOdel[$i]['model_id'];?>">
+							<?php if(strlen(@$latestMOdel[$i]['model_name']) >50){ echo ucfirst(substr(@$latestMOdel[$i]['model_name'],0,50))."...";}else{ echo @ucfirst($latestMOdel[$i]['model_name']);}?>
+                            <!--</a>-->
+                            </div>
+                            </li> 
+                                           
+					<?php endfor; 					                      
+					</ul>
+				</div>	
+				
+			</div>
+			<!-- end related-act-inner -->
+			<div class="clear"></div>
+		
+		</div>*/?>
+		
+</td>
+</tr>
+<tr>
+<td><img src="<?php echo $config_var->ADMIN_TPL_URL;?>/images/shared/blank.gif" width="695" height="1" alt="blank" /></td>
+<td></td>
+</tr>
+</table>
+ </form> 
+ 
+<div class="clear"></div>
+ 
+
+</div>
+		

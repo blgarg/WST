@@ -1,0 +1,101 @@
+<table border="0" width="100%" cellpadding="0" cellspacing="0" id="product-table" style="float:left">
+				<tr>
+				<td  width="50%" height="350" valign="top">
+				<div id="accordion" style="width:99%;float:left;margin-top:0px;z-index:1;margin-left:0px;padding-left:0px;">
+					<h3><a href="#" style="color:#94B52C"><?php $cms=new model_dashboard_default();
+					$contents=$cms->get_admin_cms();
+					echo $contents['page_title'];
+					?></a></h3>
+					<div style="height:265px !important;">	
+					<p ><?php echo substr($contents['page_content'],0,800);if(strlen($contents['page_content'])>800){ echo "......";}?> </p>
+					</div>
+					
+					
+					
+					
+					
+					
+			</div>
+				</td>
+				<td width="50%" height="350" valign="top" align="left" style="padding:0px 0px 0px 0px;">
+<?php
+		if(isset($_SESSION['user_role']) && $_SESSION['user_role']=='user')
+		{
+		?>
+					<table cellpadding="0" cellspacing="0" align="left" width="100%">
+					<tr>
+									
+
+									<td align="center"><a href="./?mod=mod_booksStore&view=default&m=1" title="Manage Books" class="info-tooltip">
+									<img src="./template/system/images/dashboard/manage_user.png"   width="80" height="80" border="0"/></a></td>
+                                    <td align="center"><a href="./?mod=mod_booksStore&view=addNewBook&m=3" title="Add new Book" class="info-tooltip">
+									<img src="./template/system/images/dashboard/add_user.png"  width="80" height="80" border="0"/></a></td>
+                                    <td align="center"><a href="./?mod=mod_settings&view=default&d=4" title="Profile Settings" class="info-tooltip">
+									<img src="./template/system/images/dashboard/global_settings.png"  width="80" height="80" border="0"/></a></td>
+					</tr>
+					<tr>
+									<td align="center"><a href="./?mod=mod_booksStore&view=default&m=1" title="Manage Books" class="info-tooltip">Manage Books</a></td>
+                                    <td align="center"><a href="./?mod=mod_booksStore&view=addNewBook&m=3" title="Add new Book" class="info-tooltip">Add Book</a></td>
+                                    <td align="center"><a href="./?mod=mod_settings&view=default&d=4" title="Profile Settings" class="info-tooltip">Profile Settings</a></td>
+
+					</tr>
+					<tr><td width="100%" colspan="4">&nbsp;</td></tr>
+					<tr>
+									
+									
+									<!--<td align="center"><a href="./?mod=mod_contest&view=default&c=1" title="Manage Contest" class="info-tooltip">
+									<img src="./template/system/images/dashboard/media.png"   width="80" height="80" border="0"/></a></td>
+									<td align="center"><a href="./?mod=mod_categories&view=default&d=6" title="Manage Categories" class="info-tooltip">
+									<img src="./template/system/images/dashboard/category.png"  width="80" height="80" border="0"/></a></td>-->
+					</tr>
+					<tr>
+									
+<!--									<td align="center"><a href="./?mod=mod_contest&view=default&c=1" title="Manage Contest" class="info-tooltip">Manage Contest</a></td>
+									<td align="center"><a href="./?mod=mod_categories&view=default&d=6" title="Manage Categories" class="info-tooltip">Manage Category</a></td>
+-->					</tr>
+					</table>
+                    <?php
+					}
+					else
+					{
+					?>
+                   <table cellpadding="0" cellspacing="0" align="left" width="100%">
+					<tr>
+									
+
+									<td align="center"><a href="./?mod=mod_manageUser&view=default&m=1" title="Manage Users" class="info-tooltip">
+									<img src="./template/system/images/dashboard/manage_user.png"   width="80" height="80" border="0"/></a></td>
+                                    <td align="center"><a href="./?mod=mod_manageUser&view=addNewUser&m=2" title="Add new User" class="info-tooltip">
+									<img src="./template/system/images/dashboard/add_user.png"  width="80" height="80" border="0"/></a></td>
+                                    <td align="center"><a href="./?mod=mod_settings&view=default&d=4" title="Global settings" class="info-tooltip">
+									<img src="./template/system/images/dashboard/global_settings.png"  width="80" height="80" border="0"/></a></td>
+					</tr>
+					<tr>
+									<td align="center"><a href="./?mod=mod_manageUser&view=default&m=1" title="Manage Users" class="info-tooltip">Manage Users</a></td>
+                                    <td align="center"><a href="./?mod=mod_manageUser&view=addNewUser&m=2" title="Add new User" class="info-tooltip">Add User</a></td>
+                                    <td align="center"><a href="./?mod=mod_settings&view=default&d=4" title="Global Settings" class="info-tooltip">Global Settings</a></td>
+
+					</tr>
+					<tr><td width="100%" colspan="4">&nbsp;</td></tr>
+					<tr>
+									
+									
+									<!--<td align="center"><a href="./?mod=mod_contest&view=default&c=1" title="Manage Contest" class="info-tooltip">
+									<img src="./template/system/images/dashboard/media.png"   width="80" height="80" border="0"/></a></td>
+									<td align="center"><a href="./?mod=mod_categories&view=default&d=6" title="Manage Categories" class="info-tooltip">
+									<img src="./template/system/images/dashboard/category.png"  width="80" height="80" border="0"/></a></td>-->
+					</tr>
+					<tr>
+									
+<!--									<td align="center"><a href="./?mod=mod_contest&view=default&c=1" title="Manage Contest" class="info-tooltip">Manage Contest</a></td>
+									<td align="center"><a href="./?mod=mod_categories&view=default&d=6" title="Manage Categories" class="info-tooltip">Manage Category</a></td>
+-->					</tr>
+					</table> 
+                    <?php
+					}
+					?>
+				</td>
+				
+							</tr>
+			
+				</table>

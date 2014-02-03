@@ -1,0 +1,37 @@
+$(function(){
+ $("a.selector").click(function(){
+ 
+ page=$(this).attr("href");
+ 
+ ids=new Array()
+ a=0;
+$('#c_b :checked').each(function() {
+requestvalue= $("#requestid").val();
+ ids[a]=$(this).val();
+ a++;
+ })
+ if(ids=='')
+ {
+ alert('please select a image');
+ return false;
+ }
+ if(confirm("Are you sure want to delete?"))
+ {
+  $.ajax({url:'delete.php',data:"id="+ids,type:"POST",success:function(res)
+	 {  
+	 	    
+$.ajax({
+  url: 'delete.php',data:"requestid="+requestvalue,type:"POST",
+  success: function(data) {
+
+
+    $('div #kk').replaceWith(data);
+  }
+});
+
+ 	  }
+ 	});
+ }
+ return false;
+ })
+ });

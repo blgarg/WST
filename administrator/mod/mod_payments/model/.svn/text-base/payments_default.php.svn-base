@@ -1,0 +1,227 @@
+<?php
+/*                  $this->tb_name = 'mgl_seo_pages_content';
+					$this->where = '';
+					$this->adjacents = '3';
+					$this->page = 'index.php?mod=mod_dashboard';
+					$this->pageLimit = '5'; 
+					*/
+					
+/*                 FOR PAGINATION INITIALIZATION THE ABOVE VARIABLES
+				   1. Call $data = $this->get_page_nav();
+				   2. abovce functions returns array of three values 
+				   		a. query result = $data[result]
+						b. total number of records = $data[records] 
+						c. Navigation  =  $data[nav] 
+					*/
+					
+/*                 Load records from database 
+				   $Data = $this->get_page_nav();  
+				   $this->cur = $Data['result'];
+ 				   $result_set = $this->loadAssoc();	
+				    */
+
+
+					
+class model_payments_default extends JDatabaseMySQL{  			
+          var $qry = '';  
+		  var $_result = '';             
+		  var $searchCondition = ''; 
+		   var $originalBanner = '';
+		  var $thumbbanner ='';
+		  var $mediumbanner = '';   
+		         
+          function __construct(  ){ 
+		              
+			}   			   		   
+		  
+			// parent::__query($this->qry);
+			function initialize(){
+			
+			/*	if(isset($_REQUEST['hdnSearch']) && $_REQUEST['hdnSearch']=='hdnsearch'){
+					if(isset($_REQUEST['cmbStatus']) && $_REQUEST['cmbStatus']!=''){
+						$this->searchCondition .= ' and Actions='.$_REQUEST['cmbStatus'];
+					} */
+				
+			/*		if(isset($_REQUEST['creteria']) && $_REQUEST['creteria']!='' && strtolower($_REQUEST['creteria'])!='search' ){
+						$this->searchCondition .= ' and (mag_title like "%'.trim($_REQUEST['creteria']).'%"  )';
+					}
+					
+				} */
+				
+				
+				
+				if(isset($_REQUEST['type']) && $_REQUEST['type']=='txn_id'){		
+				 $this->tb_name = 'payment_transaction';
+				 $this->where = ' where 1  ORDER BY parties_id DESC';
+				}
+				
+				if(isset($_REQUEST['type']) && $_REQUEST['type']=='amount'){
+				$this->tb_name = 'payment_transaction';
+				$this->where = ' where 1 '.$this->searchCondition.' ORDER BY party_id DESC';
+				}
+				if(isset($_REQUEST['type']) && $_REQUEST['type']=='amount'){
+				$this->tb_name = 'payment_transaction';
+				$this->where = ' where 1 '.$this->searchCondition.' ORDER BY party_id DESC';
+				}
+				if(isset($_REQUEST['type']) && $_REQUEST['type']=='amount'){
+				$this->tb_name = 'payment_transaction';
+				$this->where = ' where 1 '.$this->searchCondition.' ORDER BY party_id DESC';
+				}
+				$this->tb_name = 'payment_transaction';
+				$this->where = ' where 1 '.$this->searchCondition.' ORDER BY txn_date DESC';
+			    //$this->where = 'ORDER BY bannerId DESC';
+				$this->adjacents = '1';
+				
+				if(isset($_REQUEST['hdnSearch']) && $_REQUEST['hdnSearch']=='hdnsearch'){
+				$this->page = 'index.php?mod=mod_payments&view=default&m=11&d=5&creteria='.trim($_REQUEST['creteria']).'&hdnSearch='.$_REQUEST['hdnSearch']."&type=".$_REQUEST['type'];
+				}else{
+				$this->page = 'index.php?mod=mod_payments&view=default&m=11&d=5';
+				}
+				$this->pageLimit = '10';
+				// $this->_result = mysql_query($this->qry);
+                     return $this->get_page_nav();
+				}	
+				
+				
+				function getvarp(){
+				 //$this->_result = mysql_query($this->qry);
+						$_data = $this->get_page_nav();  
+						$this->cur = $_data['result'];
+						$result_set = $this->loadAssoc();
+						$receivedpayment = array();
+						for($m=0;$m<count($result_set);$m++){
+							
+							if(isset($result_set[$m]['parties_id']) && $result_set[$m]['parties_id'] != '' && $_REQUEST['type']=='academy'){
+								
+								$amtinfo = self :: amtacadmyinfo($result_set[$m]['parties_id']);
+								
+								$result_set[$m]['amt_book_id'] = $amtinfo['amt_book_id'];
+								$result_set[$m]['total_amt_withanothercost'] = $amtinfo['total_amt_withanothercost'];
+								$result_set[$m]['pending_payment'] = $amtinfo['pending_payment'];
+								$result_set[$m]['balance_payment'] = $amtinfo['balance_payment'];
+								$pmtfo = self :: receivedacadamypmtinfo($result_set[$m]['parties_id']);
+								$result_set[$m]['receivepmt'] = $pmtfo['receivepmt'];						
+							}
+							
+							if(isset($result_set[$m]['party_id']) && $result_set[$m]['party_id'] != '' && $_REQUEST['type']=='party'){
+								$amtinfo = self :: amtpartyinfo($result_set[$m]['party_id']);
+								
+								$result_set[$m]['amt_book_id'] = $amtinfo['amt_book_id'];
+								$result_set[$m]['total_amt_withanothercost'] = $amtinfo['total_amt_withanothercost'];
+								$result_set[$m]['pending_payment'] = $amtinfo['pending_payment'];
+								$result_set[$m]['balance_payment'] = $amtinfo['balance_payment'];
+									
+								$pmtfo = self :: receivedpartypmtinfo($result_set[$m]['party_id']);
+								$result_set[$m]['receivepmt'] = $pmtfo['receivepmt'];
+							}
+							
+							
+							
+							
+							
+						}
+						
+						
+						return array('result'=>$result_set,'nav'=>$_data['nav']);
+				}
+				
+				
+				
+				function numRow(){	 $this->setQuery($this->qry);
+									 $array_aa = $this->getNumRows();
+											return $array_aa;
+											
+				}			
+			
+									
+				function deleteData($ids){
+					$this->qry = "delete FROM mgl_magazine_detail WHERE mag_id  in(".$ids.") ";
+					$this->sql = $this->qry;
+					
+					if($this->query()){
+						return true;
+					}else{
+						return false;
+					}
+					
+				}
+				function changeStatus($modelIds,$type){
+				
+				//echo $type; die;
+					if($type=="activate") $typeval = '1'; else $typeval='0';
+					$this->qry = "update mgl_magazine_detail set Actions='".$typeval."' WHERE mag_id in(".$modelIds.") ";
+					$this->sql = $this->qry;
+					
+					if($this->query()){
+						return true;
+					}else{
+						return false;
+					}
+					
+				}
+			
+		function amtacadmyinfo($biztypeid){
+			$this->sql = "SELECT amt_book_id,total_amt_withanothercost,pending_payment,balance_payment FROM mgl_amt_sell_books where pending_payment!=0 and academy_id ='".$biztypeid."' ";
+			$this->query();
+			$amtinfo = $this->loadAssoc();
+			$totalpevcpayment = array();
+			$totalpevcpayment['total_amt_withanothercost'] = 0;
+			$totalpevcpayment['pending_payment'] = 0;
+			$totalpevcpayment['balance_payment'] = 0;
+			
+			 for($a=0;$a<count($amtinfo);$a++){
+				$totalpevcpayment['total_amt_withanothercost'] = $totalpevcpayment['total_amt_withanothercost'] + $amtinfo[$a]['total_amt_withanothercost'];
+				$totalpevcpayment['pending_payment'] = $totalpevcpayment['pending_payment'] + $amtinfo[$a]['pending_payment'];
+				$totalpevcpayment['balance_payment'] = $totalpevcpayment['balance_payment'] + $amtinfo[$a]['balance_payment'];
+			} 
+			return $totalpevcpayment;
+			
+		}
+		
+		function amtpartyinfo($biztypeid){
+			$this->sql = "SELECT amt_book_id,total_amt_withanothercost,pending_payment,balance_payment FROM mgl_amt_sell_books where pending_payment!=0 and party_id ='".$biztypeid."' ";
+			$this->query();
+			$amtinfo = $this->loadAssoc();
+			$totalpevcpayment = array();
+			$totalpevcpayment['total_amt_withanothercost'] = 0;
+			$totalpevcpayment['pending_payment'] = 0;
+			$totalpevcpayment['balance_payment'] = 0;
+				
+			for($a=0;$a<count($amtinfo);$a++){
+				$totalpevcpayment['total_amt_withanothercost'] = $totalpevcpayment['total_amt_withanothercost'] + $amtinfo[$a]['total_amt_withanothercost'];
+				$totalpevcpayment['pending_payment'] = $totalpevcpayment['pending_payment'] + $amtinfo[$a]['pending_payment'];
+				$totalpevcpayment['balance_payment'] = $totalpevcpayment['balance_payment'] + $amtinfo[$a]['balance_payment'];
+			}
+			return $totalpevcpayment;
+		}
+		
+		function receivedpartypmtinfo($pId){
+			$this->sql = "SELECT receivepmt FROM recive_payments where party_id= '".$pId."' ";
+			$this->query();
+			$pmtinfo = $this->loadAssoc();
+			$totalsum = array();
+			$totalsum['receivepmt'] = 0;
+			for($i=0;$i<count($pmtinfo);$i++){
+				$totalsum['receivepmt'] = $totalsum['receivepmt'] + $pmtinfo[$i]['receivepmt'];
+			}
+			
+			return $totalsum;
+		}
+		
+		function receivedacadamypmtinfo($pId){
+			$this->sql = "SELECT receivepmt FROM recive_payments where acadamy_id= '".$pId."' ";
+			$this->query();
+			$pmtinfo = $this->loadAssoc();
+			$totalsum = array();
+			
+			$totalsum['receivepmt'] = 0;
+			for($i=0;$i<count($pmtinfo);$i++){
+				$totalsum['receivepmt'] = $totalsum['receivepmt'] + $pmtinfo[$i]['receivepmt'];
+			}
+			return $totalsum;
+		}
+		
+}
+						
+						
+						

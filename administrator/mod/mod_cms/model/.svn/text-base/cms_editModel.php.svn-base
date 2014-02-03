@@ -1,0 +1,158 @@
+<?php
+/*                  $this->tb_name = 'mgl_seo_pages_content';
+					$this->where = '';
+					$this->adjacents = '3';
+					$this->page = 'index.php?mod=mod_dashboard';
+					$this->pageLimit = '5'; 
+					*/
+					
+/*                 FOR PAGINATION INITIALIZATION THE ABOVE VARIABLES
+				   1. Call $data = $this->get_page_nav();
+				   2. abovce functions returns array of three values 
+				   		a. query result = $data[result]
+						b. total number of records = $data[records] 
+						c. Navigation  =  $data[nav] 
+					*/
+					
+/*                 Load records from database 
+				   $Data = $this->get_page_nav();  
+				   $this->cur = $Data['result'];
+ 				   $result_set = $this->loadAssoc();	
+
+				    */		
+					
+					
+class model_cms_editModel extends JDatabaseMySQL
+{  			
+          var $modelName;
+		  var $birthdate;
+		  //var $birthplace;
+		  var $stats;
+		  var $counrty;
+		  var $deceased;
+		  var $Photographer;
+		  var $pageCats = 24;
+		  var $createdDate = '0000-00-00 00:00:00';
+		  var $updatedDate = '0000-00-00 00:00:00';
+		  var $qry = '';  
+		  var $_result = '';  
+		  var $originalBanner = '';
+		  var $thumbbanner ='';
+		  var $mediumbanner = '';   
+		  var $check = '';                   
+		                     
+         	function __construct(){}
+		  	function initialize(){ return ;}	
+													
+			function getModelData($data)
+			{	$this->sql = "SELECT * FROM mgl_models WHERE model_id='".$data['model_id']."'";
+				$this->query();
+				$this->_result = $this->getArray();   				
+				return (object)$this->_result;			
+			}
+			
+			function saveData($data,$imagehdpi_800,$imagehdpi_854,$imageldpi,$imagemdpi,$imagetab)
+			{ 
+			  $HelperOb = new Helper();
+			  $config_var = new config();
+			 
+			  $this->modelName = @mysql_real_escape_string(stripslashes($data->modelName));
+			  $this->modellname = @mysql_real_escape_string(stripslashes($data->model_lname));
+			  $this->appearmonth = @mysql_real_escape_string(stripslashes($data->appear_month));
+			  $this->appearyear = @mysql_real_escape_string(stripslashes($data->appear_year));
+			  $this->birthdate = $data->D_o_b;
+			  //$this->birthplace = @mysql_real_escape_string(stripslashes($data->Birthplace));
+			  $this->stats = @addslashes($data->Stats);
+			
+			  $this->counrty = @mysql_real_escape_string(stripslashes($data->Country));
+			  $this->deceased = @mysql_real_escape_string(stripslashes($data->Deceased));
+			  $this->Photographer = @mysql_real_escape_string(stripslashes($data->Photographer));
+			  $this->CauseDeath = @mysql_real_escape_string(stripslashes($data->CauseDeath));
+			  $this->createdDate = date('Y-m-d g:i:s');
+			if($imagehdpi_800 !='' && $imagehdpi_854 !='' && $imageldpi !='' && $imagemdpi !='' && $imagetab !=''){
+				$imagehdpi= "`imagehdpi`='".$imagehdpi_800."',";
+				$imageshdpi= "`imageshdpi`='".$imagehdpi_854."',";
+				$imageldpi= "`imageldpi`='".$imageldpi."',";
+				$imagemdpi= "`imagemdpi`='".$imagemdpi."',";
+				$imagexhdpi= "`imagexhdpi`='".$imagetab."',";
+			}
+			
+			      $this->qry = "UPDATE mgl_models SET 
+						  model_name ='".$this->modelName."',
+						  model_lname ='".$this->modellname."',
+						  appear_month ='".$this->appearmonth."',
+						  appear_year ='".$this->appearyear."',
+						  model_dob='".$this->birthdate."',
+						  Stats='".$this->stats."',
+						  country='".$this->counrty."',
+						  Deceased='".$this->deceased."',
+						  Photographer='".$this->Photographer."',
+						  CauseDeath='".$this->CauseDeath."',
+						  ".$imagehdpi."
+						  ".$imageshdpi."
+						  ".$imageldpi."
+						  ".$imagemdpi."
+						  ".$imagexhdpi."
+						  created_date='".$this->createdDate."',
+						  Actions='1'
+						  WHERE model_id= '$data->model_id'
+						  ";
+				
+						$this->sql = $this->qry;
+						if($this->query())
+						{return true;}else{return false;}
+							   
+			 
+			}
+													
+													
+				  
+				
+					
+		    function uploadBanner($imgarr,$imgId)
+			{ 
+				 
+				 $helper = new Helper();
+				 $config_var = new config();
+				 $time = time();
+				 $tempPath = $imgarr['tmp_name'];
+				 $FileName = $imgarr['name'];
+		         $this->originalBanner = $config_var->UPLOAD_ROOT.'newsBanner/originalImg/'.$imgId."_img".".";
+		         $this->thumbbanner =$config_var->UPLOAD_ROOT.'newsBanner/thumbs/'.$imgId."_img".".";
+		  	     $this->mediumbanner = $config_var->UPLOAD_ROOT.'newsBanner/resizedImg/'.$imgId."_img".".";
+				 $ext = $helper->getUploadFileExtension($imgarr['name']);
+				 
+				 move_uploaded_file($tempPath,$this->originalBanner.$ext);
+				 
+				 $helper->resizeImage($this->originalBanner.$ext, 80, 80, $this->thumbbanner.$ext, $imgarr);
+				 $helper->resizeImage($this->originalBanner.$ext,732,360, $this->mediumbanner.$ext, $imgarr);
+				 return $time."_".".".$ext;
+				
+			}		
+				
+				
+			function deleteUploadedImages($id,$ext){
+				$config_var = new config();
+		         $this->originalBanner = $config_var->UPLOAD_ROOT.'newsBanner/originalImg/'.$id."_img".".$ext";
+		         $this->thumbbanner =$config_var->UPLOAD_ROOT.'newsBanner/thumbs/'.$id."_img".".$ext";
+		  	    $this->mediumbanner = $config_var->UPLOAD_ROOT.'newsBanner/resizedImg/'.$id."_img".".$ext";
+				
+		    if($id !=''){
+				//UNLINK PREVIOUS UPOADED IMAGES
+			if(file_exists($this->originalBanner)) unlink($this->originalBanner);
+			if(file_exists($this->thumbbanner)) unlink($this->thumbbanner);
+			if(file_exists($this->mediumbanner)) unlink($this->mediumbanner);
+			}
+			return true;
+		}
+		
+		function countryList(){
+		    $this->sql = "SELECT * FROM country";	
+			$this->query();
+			return $this->loadAssoc();
+		}		
+			
+			function getvarp(){ return; }
+													
+			
+}

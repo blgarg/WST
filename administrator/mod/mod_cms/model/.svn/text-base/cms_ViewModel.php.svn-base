@@ -1,0 +1,53 @@
+<?php
+/*                  $this->tb_name = 'mgl_seo_pages_content';
+					$this->where = '';
+					$this->adjacents = '3';
+					$this->page = 'index.php?mod=mod_dashboard';
+					$this->pageLimit = '5'; 
+					*/
+					
+/*                 FOR PAGINATION INITIALIZATION THE ABOVE VARIABLES
+				   1. Call $data = $this->get_page_nav();
+				   2. abovce functions returns array of three values 
+				   		a. query result = $data[result]
+						b. total number of records = $data[records] 
+						c. Navigation  =  $data[nav] 
+					*/
+					
+/*                 Load records from database 
+				   $Data = $this->get_page_nav();  
+				   $this->cur = $Data['result'];
+ 				   $result_set = $this->loadAssoc();	
+
+				    */		
+					
+					
+class model_newsBanner_ViewBanner extends JDatabaseMySQL
+{  			
+           var $tableName;
+		  var $bannerTitle;
+		  var $bannerDesc;
+		  var $bannerLink;
+		  var $bannerImgSrc;
+		  var $pageCats = 24;
+		  var $createdDate = '0000-00-00 00:00:00';
+		  var $updatedDate = '0000-00-00 00:00:00';
+		  var $qry = '';  
+		  var $_result = '';  
+		                
+		                     
+         	function __construct(){}
+		  	function initialize(){ return ;}	
+													
+			function getBannerData($data)
+			{	$this->sql = "SELECT * FROM mgl_news_banner WHERE bannerId='".$data['bannerId']."'";
+				$this->query();
+				$this->_result = $this->getArray();   				
+				return (object)$this->_result;			
+			}
+			
+							
+			function getvarp(){ return; }
+													
+			
+}

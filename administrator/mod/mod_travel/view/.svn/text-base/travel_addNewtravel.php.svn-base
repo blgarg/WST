@@ -1,0 +1,109 @@
+<script type="text/javascript">
+$(function(){
+$('#image_load').change(function() {
+    var filesize = this.files[0].size ;
+	var mb = filesize/(1024*1024) ;
+	$("#loadfilesize").val(mb);
+});
+});
+</script>
+<?php 
+global $config_var;  
+global $DataSet;
+
+$country_list=model_travel_addNewtravel::countryList();
+$category_list=model_travel_addNewtravel::categoryList();
+$type_list = model_travel_addNewtravel::typeList();
+//echo "<pre>";print_r($type_list);
+?>
+<div id="content-table-inner" class="Add_New_Web_Page">
+	 <form action="./index.php?mod=mod_travel&view=addNewtravel&m=5" method="post" id="adddPageFrm" name="adddPageFrm" enctype="multipart/form-data"  onSubmit="return checkAddtravel();" >
+    <input type="hidden" id="loadfilesize" name="loadfilesize" value="" />
+	<table border="0" width="100%" cellpadding="0" cellspacing="0">
+	<tr valign="top">
+   <td style="width:73%">
+    <table border="0" cellpadding="0" cellspacing="0"  id="id-form">
+            <tr>
+                <th width="153" valign="top">Place Name<span class="red">*</span> :</th>
+              <td width="558"><input type="text"  name="place_name"  id="place_name" maxlength="50" class="textbox" /></td>
+            </tr>
+			
+			<tr>
+                <th width="153" valign="top">Address<span class="red">*</span> :</th>
+              <td width="558"><input type="text"  name="address"  id="address" maxlength="70" class="textbox"/></td>
+            </tr>
+			<tr>
+                <th width="153" valign="top">City<span class="red">*</span> :</th>
+              <td width="558"><input type="text"  name="city"  id="city" maxlength="50" class="textbox"/></td>
+            </tr>
+		<tr>
+			<th width="153" valign="top">Country Name<span class="red">*</span> :</th><td>
+				<select class="textbox" name="country_name" id="country_name">
+					<option value="0" >Select Country Name</option>
+					<?php foreach($country_list as $list){ ?>
+					<option value="<?php echo $list['id']; ?>" ><?php echo $list['country_name']; ?></option>
+					<?php }?>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<th width="153" valign="top">Type<span class="red">*</span> :</th>
+			<td>
+				<select name="type" id="type" class="textbox">
+					<option value="0">Select type</option>
+					<?php foreach($type_list as $list){?>
+						<option value="<?php echo $list['id']?>"><?php echo $list['type_name']?></option>
+					<?php }?>
+				</select>
+			</td>
+		</tr>
+		<!--<tr><th width="153" valign="top">Category Name<span class="red">*</span> :</th><td>
+			<select class="textbox" name="category_name" id="category_name">
+				<option value="" >Select Category Name</option>
+				<?php //foreach($category_list as $list){ ?>
+                <option value="<?php //echo $list['id']; ?>" ><?php //echo $list['category_name']; ?></option>
+				<?php //}?>
+			</select>
+		</td></tr>-->
+		<tr>
+              <th width="153" valign="top">Working Hours :</th>
+              <td width="558"><input type="text"  name="whours"  id="whours" maxlength="4" class="textbox"/></td>
+        </tr>
+		<tr>
+              <th width="153" valign="top">Description :</th>
+              <td width="558"><textarea name="description"></textarea></td>
+        </tr>
+		<tr><th width="153" valign="top">Upload Image :</th>
+		<td><input class="textbox" type="file" id="image_load" name="image_load" />
+		<!-- ************************************  -->
+			
+		<!-- *********************************** -->
+		</td>
+		</tr>
+	        
+        <tr>
+            <th>&nbsp;</th>
+            <td valign="top">
+                <input type="hidden" name="controller" value="add_new_travel"  />
+                <input type="hidden" name="mod" value="mod_travel"  />
+             <input type="button" value="<?php echo SAVE;?>"  title="Save" name="button" onclick="checkAddtravel();" style="cursor:pointer;width:70px;height:30px;"/>
+                <input type="button" value="<?php echo CANCEL;?>" title="Cancel" onclick="window.location.href='./?mod=mod_travel&view=default&d=6'"  style="cursor:pointer;width:70px;height:30px;"/>          </td>
+            </tr>
+        </table>
+  	<!-- end id-form  -->
+</td>
+	<td align="left">
+</td>
+</tr>
+<tr>
+<td><img src="<?php echo $config_var->ADMIN_TPL_URL;?>/images/shared/blank.gif" width="695" height="1" alt="blank" /></td>
+<td></td>
+</tr>
+</table>
+ </form> 
+ 
+<div class="clear"></div>
+ 
+
+</div>
+		

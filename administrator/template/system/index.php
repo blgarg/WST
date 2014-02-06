@@ -451,7 +451,19 @@ function showWaitPopUp(id,showClose,query){
 		</li>
 		</ul>
 	 
-	 
+	 	<div class="nav-divider">&nbsp;</div>
+
+		<!-- End Category menu-->                   
+        
+        <ul <?php if(@$_GET['mod'] == 'mod_partygirls' && @$_GET['m']==6){?>class="current"<?php }else{?>class="select"<?php }?>>
+		<li><a href='<?php echo $config_var->ADMIN_URL."?mod=mod_partygirls&view=default&m=6";?>' title="Party Girls"><b> Party Girls</b></a><!--[if IE 7]><!--><!--<![endif]-->
+		<!--[if lte IE 6]><table><tr><td><![endif]-->
+		<div class="select_sub <?php if(@$_GET['mod'] == 'mod_partygirls' ){?>show<?php }?>">
+			
+		</div>
+		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+		</li>
+		</ul>
 	 
 	 <!-- -->
         

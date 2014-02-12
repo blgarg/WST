@@ -365,9 +365,6 @@ function showWaitPopUp(id,showClose,query){
 				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_upcoming&view=default&d=8"; ?>'title="Upcoming">Upcoming</a></li>	
 				<li>
 				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_tour&view=addImage&id=100000000000455"; ?>'title="Upcoming">Tour Gallery</a></li>
-					<li>
-				<a href='<?php echo "http://".$_SERVER['HTTP_HOST']."/";?>phpBB3' target ="_blank" title="Forum">Forum</a></li>
-				</ul>
 				
                                
 				
@@ -450,17 +447,41 @@ function showWaitPopUp(id,showClose,query){
 		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
 		</li>
 		</ul>
+		
+		<div class="nav-divider">&nbsp;</div>
+	
+	 <!--- ************** New tab  *************** -->
+		<ul <?php if(@$_GET['mod'] == 'mod_partygirls'){?>class="current"<?php }else{?>class="select"<?php }?>>
+		<li><a href='<?php echo $config_var->ADMIN_URL."?mod=mod_partygirls&view=default&m=1";?>' title="Manage Party Girls"><b>Manage Party Girls </b></a><!--[if IE 7]><!--><!--<![endif]-->
+		<!--[if lte IE 6]><table><tr><td><![endif]-->
+		<div class="select_sub <?php if(@$_GET['mod'] == 'mod_partygirls'){?>show<?php }?>">
+			
+		</div>
+		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
+		</li>
+		</ul>
 	 
 	 	<div class="nav-divider">&nbsp;</div>
 
 		<!-- End Category menu-->                   
         
-        <ul <?php if(@$_GET['mod'] == 'mod_partygirls' && @$_GET['m']==6){?>class="current"<?php }else{?>class="select"<?php }?>>
-		<li><a href='<?php echo $config_var->ADMIN_URL."?mod=mod_partygirls&view=default&m=6";?>' title="Party Girls"><b> Party Girls</b></a><!--[if IE 7]><!--><!--<![endif]-->
+        <ul <?php if(@$_GET['type']== 'forum'){?>class="current"<?php }else{?>class="select"<?php }?>>
+		<li><a href='<?php echo $config_var->ADMIN_URL."?mod=mod_forum&view=default&d=1&type=forum";?>' title="Forum"><b> Forum</b></a><!--[if IE 7]><!--><!--<![endif]-->
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
-		<div class="select_sub <?php if(@$_GET['mod'] == 'mod_partygirls' ){?>show<?php }?>">
-			
+		<div class="select_sub <?php if(@$_GET['type']== 'forum'){?>show<?php }?>">
+			<ul class="sub">
+				<li <?php if(@$_GET['d'] == '1'){?>class="sub_show"<?php }?>>
+				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_forum&view=default&d=1&type=forum"; ?>'title="Manage Forum">Manage Forum</a></li>
+                  <li <?php if( @$_GET['d'] == '2'){?>class="sub_show"<?php }?>>
+				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_forumcat&view=default&d=2&type=forum"; ?>'title="Manage Category">Manage Category</a></li> 
+				 <li <?php if( @$_GET['d'] == '3'){?>class="sub_show"<?php }?>>
+				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_forumsubcat&view=default&d=3&type=forum"; ?>'title="Manage Sub Category">Manage Sub Category</a></li>             
+					<li <?php if(@$_GET['d'] == '4'){?>class="sub_show"<?php }?>>
+				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_forum&view=manage_posts&d=4&type=forum"; ?>'title="Manage Posts">Manage Posts</a></li>
+				
+				</ul>
 		</div>
+		
 		<!--[if lte IE 6]></td></tr></table></a><![endif]-->
 		</li>
 		</ul>

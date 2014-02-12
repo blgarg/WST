@@ -4,18 +4,18 @@ $mod_str = isset($mod_view)?$mod_view:'';
 ############### PAGE TITLE
 switch($mod_str)
 { 
-	case 'editgallery':
-	$pageTitle = 'Edit Gallery';
-	$modTitle = 'Edit Gallery';
+	case 'editpartygirls':
+	$pageTitle = 'Edit Party Girls';
+	$modTitle = 'Edit Party Girls';
 	break;
-	  case 'addNewgallery':
-	  $pageTitle = 'Add Gallery';
-	  $modTitle = 'Add Gallery';
+	  case 'addNewpartygirls':
+	  $pageTitle = 'Add Party Girls';
+	  $modTitle = 'Add Party Girls';
 	  break;
   
 	  default :
-	  $pageTitle = 'Manage Gallery';
-	  $modTitle = 'Manage Gallery';
+	  $pageTitle = 'Manage Party Girls';
+	  $modTitle = 'Manage Party Girls';
 	  $icon = '';
 	  break;}
 

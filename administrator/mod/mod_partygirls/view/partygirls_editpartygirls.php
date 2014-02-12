@@ -32,7 +32,7 @@ $config['skin'] = 'v2';
 	$gallery = $model_partygirls_editpartygirls->getPageData($_REQUEST['cat_id']);
 	$country_list=$model_partygirls_editpartygirls->countryList();
 	$category_list=$model_partygirls_editpartygirls->categoryList();
-	$thumbnail = $config_var->img."/".$gallery['image_thumbnail'];
+	$thumbnail = $config_var->thumbparty."/".$gallery['image_thumbnail'];
 }   
 
 ?>
@@ -57,7 +57,10 @@ $config['skin'] = 'v2';
 				<?php }?>
 			</select>
 		</td></tr>
-		
+		<tr>
+                <th width="153" valign="top">City<span class="red">*</span> :</th>
+              <td width="558"><input type="text"  name="city"  id="city" maxlength="50" class="textbox" value="<?php echo $gallery['city'] ;?>"/></td>
+        </tr>
 		<tr><th width="153" valign="top">Category Name<span class="red">*</span> :</th><td>
 			<select class="textbox" name="category_name" id="category_name">
 				<option value="" >Select Category Name</option>

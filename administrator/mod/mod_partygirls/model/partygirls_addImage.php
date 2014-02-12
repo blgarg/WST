@@ -17,8 +17,8 @@ class model_partygirls_addImage extends JDatabaseMySQL{
 		  	function initialize(){ return ;}	
 			 	
 			function getvarp(){ return; }
-			function getGalleryName($id){
-			$this->sql = "SELECT * FROM `images` WHERE `id` =".$id ;
+			function getpartygirlsName($id){
+			$this->sql = "SELECT * FROM `party_girls_images` WHERE `id` =".$id ;
 			$this->query();
 			return $this->loadAssoc();
 			}

@@ -49,6 +49,14 @@ with (window.document.adddPageFrm) {
 		else if(isEmpty(country_name, 'Please select country')) {
 		return false;
 		}
+		else if (isEmpty(city, 'Please enter city name')) {
+		return false;
+		}else if(onlytext(city, 'Please enter text only.')) {
+			return false;
+		}
+		else if(validateHtml(city,'Special characters are not allowed in city name')){
+			return false;
+		}
 		else if(isEmpty(category_name, 'Please select category')) {
 		return false;
 		}
@@ -91,6 +99,14 @@ function checkAddgallery()
 		}
 		else if(isEmpty(country_name, 'Please select country')) {
 		return false;
+		}
+		else if (isEmpty(city, 'Please enter city name')) {
+		return false;
+		}else if(onlytext(city, 'Please enter text only.')) {
+			return false;
+		}
+		else if(validateHtml(city,'Special characters are not allowed in city name')){
+			return false;
 		}
 		else if(isEmpty(category_name, 'Please select category')) {
 		return false;

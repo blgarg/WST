@@ -32,7 +32,7 @@ class model_partygirls_default extends JDatabaseMySQL{
 				}
 						
 				
-				$this->tb_name = 'images';
+				$this->tb_name = 'party_girls_images';
 				$this->where = ' where 1 '.$this->searchCondition;
 				$this->where .=' order by created_on desc';
 			   	$this->adjacents = '1';
@@ -64,7 +64,7 @@ class model_partygirls_default extends JDatabaseMySQL{
 				function deleteData($ids){
 					$this->unlink($ids);			
 					@unlink($image['image']);
-					$this->qry = "delete FROM images WHERE id  in(".$ids.") ";
+					$this->qry = "delete FROM party_girls_images WHERE id  in(".$ids.") ";
 					$this->sql = $this->qry;
 					
 					if($this->query()){
@@ -80,22 +80,23 @@ class model_partygirls_default extends JDatabaseMySQL{
 				$ids = explode(",",$id);
 				//print_r($ids); die;
 				foreach ($ids as $id){
-					$this->sql = "SELECT * FROM `images` where id = ".$id;
+					$this->sql = "SELECT * FROM `party_girls_images` where id = ".$id;
 					$this->query();
 					$data = $this->loadAssoc();
-					echo $image_path = $config_var->UPLOAD_ROOT."images/".$data[0]['image_thumbnail']; ;
-					echo $thumbnail_path = $config_var->UPLOAD_ROOT."images/thumbnail/".$data[0]['image_thumbnail']; ;
+					echo $image_path = $config_var->UPLOAD_ROOT."partygirls_images/".$data[0]['image_thumbnail'];
+					echo $thumbnail_path = $config_var->UPLOAD_ROOT."partygirls_images/thumbnail/".$data[0]['image_thumbnail'];
+					echo $all_image = $config_var->UPLOAD_ROOT."partygirls_images/".$id."/";
 					@unlink($image_path);
 					@unlink($thumbnail_path);
+					rmdir($all_image);
+					
 			}
-
-
 		}
 				function changeStatus($modelIds,$type){
 				
 				//echo $type; die;
 					if($type=="activate") $typeval = '1'; else $typeval='0';
-					$this->qry = "update images set status='".$typeval."' WHERE id in(".$modelIds.") ";
+					$this->qry = "update party_girls_images set status='".$typeval."' WHERE id in(".$modelIds.") ";
 					$this->sql = $this->qry;
 					
 					if($this->query()){
@@ -111,7 +112,7 @@ class model_partygirls_default extends JDatabaseMySQL{
 				
 				
 					if($type=="activate") $featuredval = '1'; else $featuredval='0';
-					$this->qry = "update images set featured='".$featuredval."' WHERE id in(".$modelIds.") ";
+					$this->qry = "update party_girls_images set featured='".$featuredval."' WHERE id in(".$modelIds.") ";
 					$this->sql = $this->qry;
 					
 					if($this->query()){
@@ -130,7 +131,7 @@ class model_partygirls_default extends JDatabaseMySQL{
 		  	    $this->mediumbanner = $config_var->UPLOAD_ROOT.'newsBanner/resizedImg/'.$id."_img".".$ext";
 				
 		    if($id !=''){
-				//UNLINK PREVIOUS UPOADED IMAGES
+				//UNLINK PREVIOUS UPOADED party_girls_images
 			if(file_exists($this->originalBanner)) unlink($this->originalBanner);
 			if(file_exists($this->thumbbanner)) unlink($this->thumbbanner);
 			if(file_exists($this->mediumbanner)) unlink($this->mediumbanner);

@@ -23,7 +23,7 @@ class model_partygirls_addNewpartygirls extends JDatabaseMySQL{
 					{
 						$filename = microtime().".".$fileinfo['extension'];
 						$filename = str_replace(" ","",$filename);
-						if(move_uploaded_file($file['tmp_name'],$config_var->UPLOAD_ROOT."images/".$filename))
+						if(move_uploaded_file($file['tmp_name'],$config_var->UPLOAD_ROOT."partygirls_images/".$filename))
 						{
 							$data['error'] = "";
 							$data['filename'] = $filename;
@@ -133,15 +133,17 @@ class model_partygirls_addNewpartygirls extends JDatabaseMySQL{
 			 $this->imagetitle = @mysql_real_escape_string(stripslashes($data->image_title));
 			 $this->imagedata = @mysql_real_escape_string(stripslashes($data->image_data));
 			$this->countryid = @mysql_real_escape_string(stripslashes($data->country_id));
+			$this->city = @mysql_real_escape_string(stripslashes($data->city));
 			$this->categoryid = @mysql_real_escape_string(stripslashes($data->category_id)); 
 			 $this->thumbnail = @mysql_real_escape_string(stripslashes($data->image_thumbnail));
 			$this->original_name = $_FILES['image_load']['name'];
 
-		 $this->qry = "INSERT INTO images(
+		 $this->qry = "INSERT INTO party_girls_images(
 					  
 					  image_title,
 					  image_data,
 					  country_id,
+					  city,
 					  category_id,
 					  image_thumbnail,
 					  original_name,
@@ -152,6 +154,7 @@ class model_partygirls_addNewpartygirls extends JDatabaseMySQL{
 									'".$this->imagetitle."',
 									'".$this->imagedata."',
 									'".$this->countryid."',
+									'".$this->city."',
 									'".$this->categoryid."',
 									'".$this->thumbnail."',
 									'".$this->original_name."',

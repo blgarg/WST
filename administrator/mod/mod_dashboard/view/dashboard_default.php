@@ -51,15 +51,28 @@
 									<br/>
 									<a href="./?mod=mod_payments&view=default&m=1" title=" Manage Payment" class="info-tooltip">Manage Payment</a>
 								</td>
-								<td align="center"><a href="./?mod=mod_partygirls&view=default&m=6" title="Manage Party Girls" class="info-tooltip">
-									<img src="./template/system/images/dashboard/party_girls.png"   width="80" height="80" border="0"/></a>
+								<td align="center"><a href="./?mod=mod_forum&view=default" title="Manage Forum" class="info-tooltip">
+									<img src="./template/system/images/dashboard/forum.png"   width="80" height="80" border="0"/></a>
 									<br/>
-									<a href="./?mod=mod_partygirls&view=default&m=6" title=" Manage Party Girls" class="info-tooltip">Manage Party Girls</a>
+									<a href="./?mod=mod_forum&view=default&m=6" title=" Manage Forum" class="info-tooltip">Manage Forum</a>
 								</td>
 											
 							</tr>
 					
 					
+					<tr>
+								<td colspan=3>&nbsp;</td>
+							</tr>
+							<tr>
+							
+								<td align="center"><a href="./?mod=mod_partygirls&view=default&d=6" title="Manage Party Girls" class="info-tooltip">
+									<img src="./template/system/images/dashboard/party_girls.png"   width="80" height="80" border="0"/></a>
+									<br/>
+									<a href="./?mod=mod_partygirls&view=default&d=6" title="Manage Party Girls" class="info-tooltip">Manage Party Girls</a>
+								</td>		
+								
+											
+							</tr>
 					
 					</table> 
                     

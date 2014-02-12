@@ -45,6 +45,8 @@ else if(@$_GET['mod']=='mod_index' && @$_GET['view']=='contactus' )
 {echo "WST - Contact Us";}
 else if((@$_GET['mod']=='mod_travel' && @$_GET['view']=='default') || (@$_GET['mod']=='mod_travel'))
 {echo "WST - Sex Travel Adventures";}
+else if((@$_GET['mod']=='mod_partygirls' && @$_GET['view']=='default') || (@$_GET['mod']=='mod_partygirls'))
+{echo "WST - Party Girls";}
 else if((@$_GET['mod']=='mod_barguide' && @$_GET['view']=='default') || (@$_GET['mod']=='mod_barguide'))
 {echo "WST - Bar Guide";}else{echo "WST";}?>
 </title>
@@ -79,6 +81,7 @@ else if((@$_GET['mod']=='mod_barguide' && @$_GET['view']=='default') || (@$_GET[
         	<ul>
               <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=''){?>
 				<li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_index&view=home&form=agree&s=1" <?php if($_REQUEST['mod']=='mod_index' && $_REQUEST['view']=='home'){ echo "class='sltd'"; } ?> title="HOME">HOME</a></li>
+				<li><a href="<?php echo $config_var->WEB_URL ;?>?mod=mod_partygirls&view=default" <?php if($_REQUEST['mod']=='mod_partygirls'){ echo "class='sltd'"; } ?> title="Party Girls">Party Girls</a></li>
 				<li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_travel&view=default" <?php if(isset($_REQUEST['mod']) && $_REQUEST['mod']=='mod_travel'){ echo 'class="sltd"';}?> title="SEX TRAVEL ADVENTURES">TRAVEL GUIDE</a></li>
 				<li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_barguide&view=default" <?php if(isset($_REQUEST['mod']) && $_REQUEST['mod']=='mod_barguide'){ echo 'class="sltd"';}?> title="BAR GUIDE">BAR GUIDE</a></li>
 				<li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_gallery&view=default&s=3" <?php if($_REQUEST['mod']=='mod_gallery'){ echo "class='sltd'"; } ?> title="GALLERY">Gallery</a></li>
@@ -86,6 +89,7 @@ else if((@$_GET['mod']=='mod_barguide' && @$_GET['view']=='default') || (@$_GET[
 				<li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_index&view=contactus" <?php if(isset($_REQUEST['view']) && $_REQUEST['view']=='contactus'){ echo "class='sltd'"; } ?> title="CONTACT US">CONTACT US</a></li>
 				<li><a href="<?php echo $config_var->WEB_URL;?>logout.php" title="LOGOUT">Logout</a></li>
 				<?php }else{?>
+				<li><a href="<?php echo $config_var->WEB_URL ;?>?mod=mod_partygirls&view=default" <?php if($_REQUEST['mod']=='mod_partygirls'){ echo "class='sltd'"; } ?> title="Party Girls">Party Girls</a></li>
 				<li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_index&view=tour" <?php if($_REQUEST['view']=='tour'){ echo "class='sltd'"; } ?> title="TOUR">TOUR</a></li>
                 <li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_index&view=login&s=5" <?php if($_REQUEST['s']=='5'){ echo "class='sltd'"; } ?> title="LOGIN">LOGIN</a></li>
                 <li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_joinus&view=default&s=6" <?php if($_REQUEST['s']=='6'){ echo "class='sltd'"; } ?> title="JOIN NOW">JOIN NOW</a></li>

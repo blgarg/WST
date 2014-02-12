@@ -41,7 +41,7 @@ class model_partygirls_editpartygirls extends JDatabaseMySQL
 													
 			function getPageData($id)
 			{	
-				$this->sql = "SELECT * FROM images WHERE id='".$id."'";
+				$this->sql = "SELECT * FROM party_girls_images WHERE id='".$id."'";
 				$this->query();
 				$this->_result = $this->getArray();   				
 				return $this->_result;			
@@ -49,26 +49,29 @@ class model_partygirls_editpartygirls extends JDatabaseMySQL
 			
 			function saveData($data)
 			{
-			//echo "<pre>";print_r($data); die;
+			  //echo "<pre>";print_r($data); die;
 		      $this->imageTitle = @mysql_real_escape_string(stripslashes($data->image_title));
 			  $this->imageData = @mysql_real_escape_string(stripslashes($data->image_data));
 			  $this->id = @mysql_real_escape_string(stripslashes($data->cat_id));
 			  $this->country_id = @mysql_real_escape_string(stripslashes($data->country_id));
+			  $this->city = @mysql_real_escape_string(stripslashes($data->city));
 			  $this->category_id = @mysql_real_escape_string(stripslashes($data->category_id));
 			  $this->thumbnail = @mysql_real_escape_string(stripslashes($data->image_thumbnail));
 			if($this->imageData && $this->thumbnail){
-				$this->qry = "UPDATE images SET
+				$this->qry = "UPDATE party_girls_images SET
 					  image_title='".$this->imageTitle."',
 					  image_data='".$this->imageData."',
 					  country_id='".$this->country_id."',
+					  city='".$this->city."',
 					  category_id='".$this->category_id."',
 					  image_thumbnail='".$this->thumbnail."'
                       WHERE 
 					  id=".$this->id; 
 			}else{
-						$this->qry = "UPDATE images SET
+						$this->qry = "UPDATE party_girls_images SET
 					  image_title='".$this->imageTitle."',
 					  country_id='".$this->country_id."',
+					  city='".$this->city."',
 					  category_id='".$this->category_id."'
                       WHERE 
 					  id=".$this->id; 
@@ -99,17 +102,17 @@ function uploadimage($file)
 					
 					if(isset($_REQUEST['editImage']) && $_REQUEST['editImage']==1)
 					{
-					$image_path = $config_var->UPLOAD_ROOT."images/".$_REQUEST['old_img_name'] ;
-					$thumbnail_path = $config_var->UPLOAD_ROOT."images/thumbnail/".$_REQUEST['old_img_name'] ;
+					$image_path = $config_var->UPLOAD_ROOT."partygirls_images/".$_REQUEST['old_img_name'] ;
+					$thumbnail_path = $config_var->UPLOAD_ROOT."partygirls_images/thumbnail/".$_REQUEST['old_img_name'] ;
 					@unlink($image_path);
 					@unlink($thumbnail_path);
-					@unlink($config_var->UPLOAD_ROOT."images/front_end/".$_REQUEST['old_img_name']);
+					@unlink($config_var->UPLOAD_ROOT."partygirls_images/front_end/".$_REQUEST['old_img_name']);
 					
 						if(($fileinfo['extension']=="PNG" || $fileinfo['extension']=="png"|| $fileinfo['extension']=="JPG"|| $fileinfo['extension']=="jpg"|| $fileinfo['extension']=="gif"|| $fileinfo['extension']=="GIF"|| $fileinfo['extension']=="jpeg"|| $fileinfo['extension']=="JPEG") && $file['size']/(1024*1024) < 5000000 )
 						{
 							$filename = microtime().".".$fileinfo['extension'];
 							$filename = str_replace(" ","",$filename);
-							if(move_uploaded_file($file['tmp_name'],$config_var->UPLOAD_ROOT."images/".$filename))
+							if(move_uploaded_file($file['tmp_name'],$config_var->UPLOAD_ROOT."partygirls_images/".$filename))
 							{
 								$data['error'] = "";
 								$data['filename'] = $filename;

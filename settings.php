@@ -66,6 +66,9 @@ $this->thumb = '.././uploads/images/thumbnail' ;
 $this->bar_thumb = '.././uploads/bar_images/thumbnails' ;
 $this->img = '.././uploads/images' ;
 $this->bar_img = '.././uploads/bar_images' ;
+$this->thumbparty = '.././uploads/partygirls_images/thumbnail' ;
+$this->partygirls = ".././uploads/partygirls_images";
+
 	 } // END OF CONSTRUTOR
 }
 $config_var = new config(); // would be global settings 

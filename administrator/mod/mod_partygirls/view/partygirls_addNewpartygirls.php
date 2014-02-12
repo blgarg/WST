@@ -41,6 +41,10 @@ $category_list=model_partygirls_addNewpartygirls::categoryList();
 				<?php }?>
 			</select>
 		</td></tr>
+		<tr>
+                <th width="153" valign="top">Bar City<span class="red">*</span> :</th>
+              <td width="558"><input type="text"  name="city"  id="city" maxlength="50" class="textbox"/></td>
+        </tr>
 		
 		<tr><th width="153" valign="top">Category Name<span class="red">*</span> :</th><td>
 			<select class="textbox" name="category_name" id="category_name">

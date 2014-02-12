@@ -18,8 +18,8 @@ class partygirls_controller extends JDatabaseMySQL{
 				{
 					$image_err = $model_partygirls_addNewpartygirls->uploadimage($_FILES['image_load']);
 					//echo "<pre>"; print_r($image_err); die;
-					$url = $config_var->UPLOAD_ROOT."images/" ;
-					$thumbnail_path = $config_var->UPLOAD_ROOT."images/thumbnail";
+					$url = $config_var->UPLOAD_ROOT."partygirls_images/" ;
+					$thumbnail_path = $config_var->UPLOAD_ROOT."partygirls_images/thumbnail";
 					$thumb = $model_partygirls_addNewpartygirls->createthumbnail($url,$thumbnail_path,$image_err['filename'],'175',$image_err['type']);
 					$model_partygirls_addNewpartygirls->resizeImage($url.$image_err['filename'],'320','262',$url."front_end/".$image_err['filename'],$_FILES['image_load']);
 					if($image_err['error']=="")
@@ -33,6 +33,7 @@ class partygirls_controller extends JDatabaseMySQL{
 					$objects->image_data = serialize($image_data['image']);
 					$objects->image_title = strip_tags(@$_REQUEST['gallery_title']);
 					$objects->country_id = @$_REQUEST['country_name'];
+					$objects->city = @$_REQUEST['city'];
 					$objects->category_id = @$_REQUEST['category_name'];
 					$objects->image_thumbnail = @$image_err['filename'];
 					
@@ -76,8 +77,8 @@ class partygirls_controller extends JDatabaseMySQL{
 				//echo "<pre>"; print_r($_REQUEST); die;
 					$image_err = $model_partygirls_editpartygirls->uploadimage($_FILES['upload_video']);
 					//echo "<pre>"; print_r($image_err); die;
-					$url = $config_var->UPLOAD_ROOT."images/" ;
-					$thumbnail_path = $config_var->UPLOAD_ROOT."images/thumbnail";
+					$url = $config_var->UPLOAD_ROOT."partygirls_images/" ;
+					$thumbnail_path = $config_var->UPLOAD_ROOT."partygirls_images/thumbnail";
 					$thumb = $model_partygirls_editpartygirls->createthumbnail($url,$thumbnail_path,$image_err['filename'],'80',$image_err['type']);
 					$model_partygirls_editpartygirls->resizeImage($url.$image_err['filename'],'220','162',$url."front_end/".$image_err['filename'],$_FILES['upload_video']);
 					if($image_err['error']=="")
@@ -91,6 +92,7 @@ class partygirls_controller extends JDatabaseMySQL{
 							if($image_data['image']['name']=="" || $image_data['image']['name']==""){
 							$objects->image_title = strip_tags(@$_REQUEST['gallery_title']);
 							$objects->country_id = @$_REQUEST['country_name'];
+							$objects->city = @$_REQUEST['city'];
 							$objects->category_id = @$_REQUEST['category_name'];
 							$objects->cat_id = @$_REQUEST['cat_id'];
 							
@@ -98,6 +100,7 @@ class partygirls_controller extends JDatabaseMySQL{
 							$objects->image_data = serialize($image_data['image']);
 							$objects->image_title = strip_tags(@$_REQUEST['gallery_title']);
 							$objects->country_id = @$_REQUEST['country_name'];
+							$objects->city = @$_REQUEST['city'];
 							$objects->category_id = @$_REQUEST['category_name'];
 							$objects->image_thumbnail = @$image_err['filename'];
 							$objects->cat_id = @$_REQUEST['cat_id'];

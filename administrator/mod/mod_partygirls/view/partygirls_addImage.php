@@ -46,7 +46,7 @@ $galleryName = $model->getpartygirlsName($_GET['id']);
 <div class="container">
    
     <!-- The file upload form used as target for the file upload widget -->
-    <form id="fileupload" action="gallery/php/?id=<?php echo $bar_id;?>" method="POST" enctype="multipart/form-data">
+    <form id="fileupload" action="partygirls/php/?id=<?php echo $bar_id;?>" method="POST" enctype="multipart/form-data">
         <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
         <div class="row fileupload-buttonbar">
             <div class="span7">

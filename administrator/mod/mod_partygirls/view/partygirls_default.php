@@ -2,8 +2,7 @@
 global $config_var;  
 global $model;
 global $DataSet;
-//echo "<pre>"; print_r($DataSet); die;
- ?>
+?>
       
         <div id="content-table-inner">
 		
@@ -73,13 +72,15 @@ global $DataSet;
                         <div style="float:left;width:20%;min-height:40px;border-right:#CCCCCC 1px solid;text-align:center">
                         <a  href="javascript:;" style="text-align:center;line-height:40px;color:#CCCCCC;font-weight:bold; text-decoration:none;cursor:text;">Image Title</a>
                         </div>
-						<div style="float:left;width:20%;min-height:40px;border-right:#CCCCCC 1px solid;text-align:center">
+						<div style="float:left;width:15%;min-height:40px;border-right:#CCCCCC 1px solid;text-align:center">
                         <a  href="javascript:;" style="text-align:center;line-height:40px;color:#CCCCCC;font-weight:bold; text-decoration:none;cursor:text;">Category Name</a>
                         </div>
-						<div style="float:left;width:15%;min-height:40px;border-right:#CCCCCC 1px solid;text-align:center">
+						<div style="float:left;width:12%;min-height:40px;border-right:#CCCCCC 1px solid;text-align:center">
                         <a  href="javascript:;" style="text-align:center;line-height:40px;color:#CCCCCC;font-weight:bold; text-decoration:none;cursor:text;">Country Name</a>
                         </div>
-                        
+                        <div style="float:left;width:12%;min-height:40px;border-right:#CCCCCC 1px solid;text-align:center">
+                        <a  href="javascript:;" style="text-align:center;line-height:40px;color:#CCCCCC;font-weight:bold; text-decoration:none;cursor:text;">City Name</a>
+                        </div>
 					<div style="float:left;width:10%;min-height:40px;border-right:#CCCCCC 1px solid;text-align:center">
                         <a  href="javascript:;" style="text-align:center;line-height:40px;color:#CCCCCC;font-weight:bold; text-decoration:none;cursor:text;">Status</a>
 					</div>
@@ -94,7 +95,7 @@ global $DataSet;
 				$galleries  =  $DataSet['result'];
 				//echo "<pre>"; print_r($galleries); die;
 				for($i = 0;$i<count($galleries);$i++){	
-				$thumbnail = $config_var->thumb."/".$galleries[$i]['image_thumbnail']; 
+				$thumbnail = $config_var->thumbparty."/".$galleries[$i]['image_thumbnail']; 
 				$cat_name=model_partygirls_default::get_category_name($galleries[$i]['category_id']); 
 				$country_name=model_partygirls_default::get_country_name($galleries[$i]['country_id']);
 				
@@ -116,15 +117,20 @@ global $DataSet;
                         <div style="float:left;width:98%;min-height:29px;text-align:left;padding-left:1%;">
 							<?php  echo $galleries["$i"]['image_title'];?>   </div>		
                        </div> 
-						<div style="float:left;width:19%;min-height:40px;text-align:left;padding-left:1%;padding-top:12px;border-right:#CCCCCC 1px solid;"  onmouseover="displayOverLay(<?php echo $i; ?>);" onmouseout="hideOverLay(<?php echo $i; ?>);" class="breakword">
+						<div style="float:left;width:14%;min-height:40px;text-align:left;padding-left:1%;padding-top:12px;border-right:#CCCCCC 1px solid;"  onmouseover="displayOverLay(<?php echo $i; ?>);" onmouseout="hideOverLay(<?php echo $i; ?>);" class="breakword">
                         
                         <div style="float:left;width:98%;min-height:29px;text-align:left;padding-left:1%;">
 							<?php  echo $cat_name[0]['category_name'];?>   </div>		
                        </div> 
-						<div style="float:left;width:14%;min-height:40px;text-align:left;padding-left:1%;padding-top:12px;border-right:#CCCCCC 1px solid;"  onmouseover="displayOverLay(<?php echo $i; ?>);" onmouseout="hideOverLay(<?php echo $i; ?>);" class="breakword">
+						<div style="float:left;width:11%;min-height:40px;text-align:left;padding-left:1%;padding-top:12px;border-right:#CCCCCC 1px solid;"  onmouseover="displayOverLay(<?php echo $i; ?>);" onmouseout="hideOverLay(<?php echo $i; ?>);" class="breakword">
                         
                         <div style="float:left;width:98%;min-height:29px;text-align:left;padding-left:1%;">
 							<?php  echo $country_name[0]['country_name'];?>   </div>		
+                       </div> 	
+					   	<div style="float:left;width:11%;min-height:40px;text-align:left;padding-left:1%;padding-top:12px;border-right:#CCCCCC 1px solid;"  onmouseover="displayOverLay(<?php echo $i; ?>);" onmouseout="hideOverLay(<?php echo $i; ?>);" class="breakword">
+                        
+                        <div style="float:left;width:98%;min-height:29px;text-align:left;padding-left:1%;">
+							<?php  echo $galleries["$i"]['city'];?>   </div>		
                        </div> 					   
                         <div style="float:left;width:10%;min-height:40px; padding-top:12px;text-align:center; border-right:#CCCCCC 1px solid;">
                             <?php if($galleries["$i"]['status']=='1') echo ACTIVE; else echo DEACTIVE;?> 
@@ -133,7 +139,7 @@ global $DataSet;
 						
                         <div style="float:left;width:14%;solid;min-height:40px;text-align:center;padding-top:12px;">
                            <a href="?mod=mod_partygirls&view=editpartygirls&m=4&cat_id=<?php echo $galleries["$i"]['id'];?>" title="Edit" style="color:#595959;"><strong><?php echo EDIT;?></strong></a>&nbsp;
-						   <a href="?mod=mod_partygirls&view=addImage&id=<?php echo $galleries["$i"]['id'];?>" title="partygirls"><img src="<?php echo $config_var->ADMIN_TPL_URL?>images/dashboard/party_girls.png" height="35" width="45"></a></div>
+						   <a href="?mod=mod_partygirls&view=addImage&id=<?php echo $galleries["$i"]['id'];?>" title="partygirls"><img src="<?php echo $config_var->ADMIN_TPL_URL?>images/dashboard/imagegallery.png" height="35" width="45"></a></div>
                                                     
                      </div></td>
                 </tr>

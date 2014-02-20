@@ -366,10 +366,10 @@ function showWaitPopUp(id,showClose,query){
 				<li>
 				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_tour&view=addImage&id=100000000000455"; ?>'title="Upcoming">Tour Gallery</a></li>
 				
-                               
+         </ul>                      
 				
 		</div>
-		</ul>
+		
 		<div class="nav-divider">&nbsp;</div>
 		<!-- Start gallery menu-->
 		<ul <?php if(@$_GET['mod'] == 'mod_gallery' ){ ?>class="current"<?php }else{?>class="select"<?php }?>>

@@ -28,7 +28,7 @@ class Forum_controller extends JDatabaseMySQL{
 				global $config_var;
 				
 				$objects->categorytitle = strip_tags(@$_REQUEST['title']);
-				$objects->categoryText = strip_tags(@$_REQUEST['categoryText']);
+				$objects->categoryText = $_REQUEST['categoryText'];
 				$objects->category = strip_tags(@$_REQUEST['cat']);
 				$objects->subcategory = strip_tags(@$_REQUEST['sub_cat']);
 				$result = $model_Forum_addNewForum->checkRecords($objects);

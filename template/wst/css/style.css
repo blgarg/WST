@@ -113,12 +113,13 @@ text-align:justify;
 	height:39px;
 	line-height:39px;
 	padding:0 12px;
-	font-size:18px;
+	font-size:15px;
 	color:#ffffff;
 	text-transform:uppercase;
 	-webkit-border-radius:6px;
 	-moz-border-radius:6px;
 	border-radius:6px;
+	font-weight:bold;
 }
 .nav ul li a:hover, .nav ul li a.sltd{
 	text-decoration:none;
@@ -126,10 +127,11 @@ text-align:justify;
 	height:39px;
 	line-height:39px;
 	padding:0 15px;
-	font-size:18px;
+	font-size:15px;
 	color:#303030;
 	text-transform:uppercase;
 	background-color:#fff;
+	font-weight:bold;
 }				
 .content{
 	width:1000px;

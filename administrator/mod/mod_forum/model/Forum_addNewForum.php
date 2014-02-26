@@ -95,7 +95,7 @@ class model_Forum_addNewForum extends JDatabaseMySQL{
 		      $HelperOb = new Helper();
 			  $config_var = new config();
 			  $this->categoryTitle = @mysql_real_escape_string(stripslashes($data->categorytitle));
-			  $this->categoryText = @mysql_real_escape_string(stripslashes($data->categoryText));
+			  $this->categoryText = $data->categoryText;
 			  $this->category = @mysql_real_escape_string(stripslashes($data->category));
 			  $this->subcategory = @mysql_real_escape_string(stripslashes($data->subcategory));
 			  $this->createdDate = date('Y-m-d g:i:s');

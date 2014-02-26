@@ -27,6 +27,7 @@
                 <li><a href="javascript:;" title="MEMBERS">MEMBERS</a></li>
                 <li><a href="<?php echo $config_var->WEB_URL;?>login.php" title="LOGIN" <?php if($_GET['page']=='login'){?> class="sltd"<?php }?>>LOGIN</a></li>
                 <li><a href="javascript:;" title="JOIN NOW">JOIN NOW</a></li>
+				<li><a href="javascript:;" title="JOIN NOW">JOIN NOW</a></li>
             </ul>
         </div>
 		<?php }?>

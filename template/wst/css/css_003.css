@@ -1,0 +1,45 @@
+.isg_banner {
+    padding: 6px ;
+}
+
+.isg__background_banner {
+    padding: 6px;
+    background-color:#E9E9E9;
+}
+
+.isg_background_border_banner {
+    background:#ab0303;
+    border: 1px solid #222222;
+    padding: 6px 0;
+}
+
+.isg_notice {
+    background-color:#E9E9E9;
+    border-color:#ff0000;
+    border: 1px solid;
+    padding: 6px;
+    margin-bottom:5px;
+}
+
+.isg_wideheader {
+    background:url("../images/imagedoc-darknoise.png") repeat scroll left top rgba(0, 0, 0, 0);
+    border-color:rgb(0,0,128)!important;
+    border: 1px solid;
+    padding: 6px 0;
+    color: white;
+}
+
+
+.isg_warning {
+    width:100%; 
+    border-style: solid; 
+    border-width: 1px; 
+    background-color: rbg(255,255,0); 
+    color: rgb(196,0,0); 
+    font-weight:bold; 
+    padding:5px; text-align:center;
+}
+/* These are for the fileslist.php that shows the file library list */
+tr.alt1 {background-color:#E9E9E9; height:110px}
+tr.alt0 {background-color:white; height:110px}
+td.vtop {padding:2px;} 

@@ -366,10 +366,10 @@ function showWaitPopUp(id,showClose,query){
 				<li>
 				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_tour&view=addImage&id=100000000000455"; ?>'title="Upcoming">Tour Gallery</a></li>
 				
-         </ul>                      
+                               
 				
 		</div>
-		
+		</ul>
 		<div class="nav-divider">&nbsp;</div>
 		<!-- Start gallery menu-->
 		<ul <?php if(@$_GET['mod'] == 'mod_gallery' ){ ?>class="current"<?php }else{?>class="select"<?php }?>>
@@ -470,14 +470,14 @@ function showWaitPopUp(id,showClose,query){
 		<!--[if lte IE 6]><table><tr><td><![endif]-->
 		<div class="select_sub <?php if(@$_GET['type']== 'forum'){?>show<?php }?>">
 			<ul class="sub">
-				<li <?php if(@$_GET['d'] == '1'){?>class="sub_show"<?php }?>>
+				<li <?php if(@$_GET['mod'] == 'mod_forum'){?>class="sub_show"<?php }?>>
 				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_forum&view=default&d=1&type=forum"; ?>'title="Manage Forum">Manage Forum</a></li>
-                  <li <?php if( @$_GET['d'] == '2'){?>class="sub_show"<?php }?>>
+                  <li <?php if( @$_GET['mod'] == 'mod_forumcat'){?>class="sub_show"<?php }?>>
 				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_forumcat&view=default&d=2&type=forum"; ?>'title="Manage Category">Manage Category</a></li> 
-				 <li <?php if( @$_GET['d'] == '3'){?>class="sub_show"<?php }?>>
+				 <li <?php if( @$_GET['mod'] == 'mod_forumsubcat'){?>class="sub_show"<?php }?>>
 				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_forumsubcat&view=default&d=3&type=forum"; ?>'title="Manage Sub Category">Manage Sub Category</a></li>             
-					<li <?php if(@$_GET['d'] == '4'){?>class="sub_show"<?php }?>>
-				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_forum&view=manage_posts&d=4&type=forum"; ?>'title="Manage Posts">Manage Posts</a></li>
+					<li <?php if(@strtolower($_GET['mod']) == 'mod_post'){?>class="sub_show"<?php }?>>
+				<a href='<?php echo $config_var->ADMIN_URL."?mod=mod_post&view=default&d=4&type=forum"; ?>'title="Manage Posts">Manage Posts</a></li>
 				
 				</ul>
 		</div>

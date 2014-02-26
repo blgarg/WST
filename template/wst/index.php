@@ -70,6 +70,16 @@ else if((@$_GET['mod']=='mod_barguide' && @$_GET['view']=='default') || (@$_GET[
 <link rel="stylesheet" href="<?php echo $config_var->WEB_TPL_URL;?>css/rating.css" type="text/css" media="screen"/>
 <link rel="stylesheet" href="<?php echo $config_var->WEB_TPL_URL;?>css/slideshow.css" type="text/css" media="screen"/>
 <link rel="stylesheet" href="<?php echo $config_var->WEB_TPL_URL;?>css/map_slider.css" type="text/css" media="screen"/>
+<?php if($_REQUEST['mod']=='mod_forum'){?>
+<link rel="stylesheet" href="<?php echo $config_var->WEB_TPL_URL;?>css/css_002.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="<?php echo $config_var->WEB_TPL_URL;?>css/css.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="<?php echo $config_var->WEB_TPL_URL;?>css/css_003.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="<?php echo $config_var->WEB_TPL_URL;?>css/css_004.css" type="text/css" media="screen"/>
+<link rel="stylesheet" href="<?php echo $config_var->WEB_TPL_URL;?>css/forum.css" type="text/css" media="screen"/>
+
+<script src="<?php echo $config_var->WEB_TPL_URL;?>js/forum.js" type="text/javascript"></script>
+
+<?php }?>
 </head>
 <body style=""> 
 <!-- header start -->
@@ -81,6 +91,7 @@ else if((@$_GET['mod']=='mod_barguide' && @$_GET['view']=='default') || (@$_GET[
         	<ul>
               <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id']!=''){?>
 				<li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_index&view=home&form=agree&s=1" <?php if($_REQUEST['mod']=='mod_index' && $_REQUEST['view']=='home'){ echo "class='sltd'"; } ?> title="HOME">HOME</a></li>
+				<li><a href="<?php echo $config_var->WEB_URL ;?>?mod=mod_forum&view=default" <?php if($_REQUEST['mod']=='mod_forum'){ echo "class='sltd'"; } ?> title="Forum">Forum</a></li>
 				<li><a href="<?php echo $config_var->WEB_URL ;?>?mod=mod_partygirls&view=default" <?php if($_REQUEST['mod']=='mod_partygirls'){ echo "class='sltd'"; } ?> title="Party Girls">Party Girls</a></li>
 				<li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_travel&view=default" <?php if(isset($_REQUEST['mod']) && $_REQUEST['mod']=='mod_travel'){ echo 'class="sltd"';}?> title="SEX TRAVEL ADVENTURES">TRAVEL GUIDE</a></li>
 				<li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_barguide&view=default" <?php if(isset($_REQUEST['mod']) && $_REQUEST['mod']=='mod_barguide'){ echo 'class="sltd"';}?> title="BAR GUIDE">BAR GUIDE</a></li>
@@ -89,6 +100,7 @@ else if((@$_GET['mod']=='mod_barguide' && @$_GET['view']=='default') || (@$_GET[
 				<li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_index&view=contactus" <?php if(isset($_REQUEST['view']) && $_REQUEST['view']=='contactus'){ echo "class='sltd'"; } ?> title="CONTACT US">CONTACT US</a></li>
 				<li><a href="<?php echo $config_var->WEB_URL;?>logout.php" title="LOGOUT">Logout</a></li>
 				<?php }else{?>
+				<li><a href="<?php echo $config_var->WEB_URL ;?>?mod=mod_forum&view=default" <?php if($_REQUEST['mod']=='mod_forum'){ echo "class='sltd'"; } ?> title="Forum">Forum</a></li>
 				<li><a href="<?php echo $config_var->WEB_URL ;?>?mod=mod_partygirls&view=default" <?php if($_REQUEST['mod']=='mod_partygirls'){ echo "class='sltd'"; } ?> title="Party Girls">Party Girls</a></li>
 				<li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_index&view=tour" <?php if($_REQUEST['view']=='tour'){ echo "class='sltd'"; } ?> title="TOUR">TOUR</a></li>
                 <li><a href="<?php echo $config_var->WEB_URL;?>?mod=mod_index&view=login&s=5" <?php if($_REQUEST['s']=='5'){ echo "class='sltd'"; } ?> title="LOGIN">LOGIN</a></li>

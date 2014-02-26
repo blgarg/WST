@@ -49,11 +49,11 @@ $(".closePopup").click(function(){
 
 $("#starRatingGallery1").css({"height":"33"});
 $("#loading").hide();
-<?php if($countImgList > 6){?>	
+<?php if($countImgList > 6){ ?>	
     jQuery('#mycarousel').jcarousel({
     	wrap: 'circular'
     });
-<?php }?>	
+<?php  } ?>	
 $('#rate-it').click(function(e) {
 	$(".star-rate").show();
 	$(".closePopup").show();
@@ -297,7 +297,7 @@ $(".full_image").click(function(){
 							<div class="img">
 								<a href="javascript:void(0);" class="full_image" id="full_image_<?php echo $i;?>"><img src="<?php echo $config_var->UPLOAD_URL?>images/<?php echo $_GET['id']?>/thumbnails/<?php echo $list_images[$i]?>" width="120" height="160" alt="" title="<?php echo $list_images[$i];?>"/><span <?php echo $sizer; ?> style="display:hide;"><?php //echo $image; ?></span></a>
 							</div>
-                         <?php }}?>   
+                         <?php }} ?>   
                         </div>
 				  </div>
 				  <?php }?>

@@ -7,4 +7,5 @@ global $DataSet;
 $controller = new controller();
 $controller->setTPL($renderUrl);
 $controller->render();
+
 ?>

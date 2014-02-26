@@ -7,7 +7,7 @@ function imageResize($width, $height, $target) {
 				
 					//takes the larger size of the width and height and applies the formula accordingly...this is so this script will work dynamically with any size image
 
-					if ($width > $height) {
+				if ($width > $height) {
 					$percentage = ($target / $width);
 					} else {
 					$percentage = ($target / $height);
@@ -41,7 +41,7 @@ if(count($images)<=27){
 	display:none;
 }
 </style>
-<?php }?>
+<?php } ?>
 <script src="<?php echo $config_var->WEB_TPL_URL;?>js/jquery.pagination.js" type="text/javascript"></script>
 <script>
     var pagination_options = {
@@ -76,8 +76,9 @@ if(count($images)<=27){
         
         <!--Inner Text-->
         <div class="inner-txt">
-
-           <?php $cnt=0;foreach($images as $img){
+			
+           <?php 
+                $cnt=0;foreach($images as $img){
 				if($img != "." && $img != ".." && $img != "thumbnails" && $img != "thumbs.db"){
 				
 				$ext = explode(".",$img);
@@ -85,7 +86,6 @@ if(count($images)<=27){
 					$cnt++ ;
 										
 				}
-				
 			}
 			 ?>
            <!--Bar Guide Container--> 
@@ -93,14 +93,14 @@ if(count($images)<=27){
             	<div class="b-guide-hdr" style="float:left; ">
                 	 <?php echo $gallery_detail[0]['image_title'];?> | <?php if($cnt>0){echo $cnt ;}else{ echo "0 ";}?> photos  
                    
-                		<a href="?mod=mod_partygirls&view=default&s=3" style="float:right; color:#ffffff; padding-right:5px;">Back to Gallery</a>
+                		<a href="?mod=mod_partygirls&view=default&s=3" style="float:right; color:#ffffff; padding-right:5px;">Back to Party girls</a>
                    
                 </div>
                 <div class="bar-guide-txt">
                 
                 	<!--Photo Album Row-->
 					
-						<?php if(count($images)>0){?>		
+						<?php if(count($images)>0){ ?>		
 							<div id="Searchresult" style="min-height:200px; overflow:hidden;"></div>
 						  <table width="100%">
 							<tr>
@@ -123,7 +123,7 @@ if(count($images)<=27){
 										if($images[$i] !== '.' && $images[$i] !== '..' && $images[$i] !== 'Thumbs.db' && $images[$i]!=='thumbnails'){
 								$testing =   $config_var->UPLOAD_URL."partygirls_images/".$_GET['id']."/".$images[$i]; 
 								
-			$webMainUrl = $config_var->WEB_URL;
+		   $webMainUrl = $config_var->WEB_URL;
 		   $image = str_replace($webMainUrl,'',$testing);
 		   $sizes = getimagesize($image);
 				
@@ -153,7 +153,7 @@ if(count($images)<=27){
 						</div>	
 				   
 				  </div>
-				<?php }?>
+				<?php } ?>
 								
 					</div>
                     

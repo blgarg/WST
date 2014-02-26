@@ -15,8 +15,8 @@ if(isset($_GET['id']) && $_GET['id']!='' && isset($_GET['img']) && $_GET['img']!
 		$list_images = scandir($config_var->UPLOAD_ROOT."partygirls_images/".$_GET['id']);
 		
 	}
-	if(file_exists($config_var->UPLOAD_ROOT."partygirls_images/".$_GET['id']."/".$_GET['img']))
-	$image= $config_var->UPLOAD_URL."partygirls_images/".$_GET['id']."/".$_GET['img'];
+	if(file_exists($config_var->UPLOAD_ROOT."partygirls_images/".$_GET['img']))
+	$image= $config_var->UPLOAD_URL."partygirls_images/".$_GET['img'];
 	else
 	$images=array();
 	$staticRate = $model->calcRating($_GET['id'],$_GET['img']);
@@ -29,7 +29,7 @@ else if(in_array('thumbnails',$list_images))
 {
 	$countImgList = count($list_images) -3;
 }
-
+// $image;
 ?>
 <script src="jsApp/rating.js" type='text/javascript'></script>
 <script src="jsApp/jquery.lightbox_me.js"></script>
@@ -157,7 +157,7 @@ $(".full_image").click(function(){
 			console.log(data);
 			if(!isNaN(data))
 			{
-				$(".album-full-img").html('<center><img style="padding-left:92px;" height="'+height+'" width="'+width+'" src="<?php echo $config_var->UPLOAD_URL?>partygirls_images/<?php echo $_GET['id'];?>/'+image+'" title="'+image+'" ></center>');
+				$(".album-full-img").html('<center><img style="padding-left:92px;" height="'+height+'" width="'+width+'" src="<?php echo $config_var->UPLOAD_URL?>partygirls_images/'+image+'" title="'+image+'" ></center>');
 				ratingData="";
 				$("#starRatingGallery1").html(ratingData);
 				ratingData +='<div id="starRatingMsg">								<div class="closeBox"><a href="javascript:void(0);" id="closeMsg">X</a></div></div>';
@@ -193,10 +193,10 @@ $(".full_image").click(function(){
 					$model_gallery_fullDetail = new model_partygirls_fullDetail();
 					$countryName = $model_gallery_fullDetail->countryName($galleryDetail[0]['country_id']);
 			?>
-                	 <?php echo $countryName[0]['country_name']; ?>&nbsp;|&nbsp;<?php echo $galleryDetail[0]['image_title'];?>&nbsp;|&nbsp;<?php if(in_array("Thumbs.db",$list_images)){echo count($list_images)-4;}else{ echo count($list_images)-3;}?> photos  
-					<a href="?mod=mod_partygirls&view=default&s=3" style="float:right; color:#ffffff; padding-right:5px;">Back to Gallery</a>
-                    <span style="color:#fff;float:right;">|</span>
-					<a href="?mod=mod_partygirls&view=detail&s=3&id=<?php echo $_GET['id'];?>" style="float:right; color:#ffffff; padding-right:5px;">Back to Photos</a>
+                	 <?php echo $countryName[0]['country_name']; ?>&nbsp;|&nbsp;<?php echo $galleryDetail[0]['image_title'];?>&nbsp;<!-- |&nbsp; --><?php //if(in_array("Thumbs.db",$list_images)){echo count($list_images)-4;}else{ echo count($list_images)-3;}?> <!-- photos -->  
+					<a href="?mod=mod_partygirls&view=default&s=3" style="float:right; color:#ffffff; padding-right:5px;">Back to Party girls</a>
+                    <!-- <span style="color:#fff;float:right;">|</span>
+					 <a href="?mod=mod_partygirls&view=detail&s=3&id=<?php //echo $_GET['id'];?>" style="float:right; color:#ffffff; padding-right:5px;">Back to Photos</a> -->
                     
                 </div>
                 <div class="bar-guide-txt">
@@ -204,6 +204,7 @@ $(".full_image").click(function(){
                 <center>
 				
 		  <?php 
+		  
 				$image = str_replace($config_var->WEB_URL,'',$image);
 				$sizes = getimagesize($image);
 				
@@ -231,6 +232,7 @@ $(".full_image").click(function(){
 					return "width='$width' height='$height'";
 
 					}
+					
 						?>			
 						<img  style="padding-left:92px;" id="large_image_id" src="<?php echo $image;?>" title="<?php echo $_GET['img'];?>"  alt="" <?php echo $sizer;?>  />
 						</div>
@@ -261,46 +263,47 @@ $(".full_image").click(function(){
 					<div id="loading" >Loading...</div><?php */?>
 				<?php 
 				
-				if($countImgList > 6){?>	
-				   <div class="album-img-slider">
+				//if($countImgList > 6){?>	
+				  <!--  <div class="album-img-slider">
                     	<ul id="mycarousel" class="jcarousel-skin-tango">
-						<?php
+						<?php /*
 						for($i=2;$i<count($list_images);$i++){
 							if($list_images[$i] !== '.' && $list_images[$i] !== '..' && $list_images[$i]!== 'Thumbs.db' && $list_images[$i]!=='thumbnails'){?>
 							<li><a href="javascript:void(0);" class="full_image" id="full_image_<?php echo $i;?>">
 							<?php
-							$image = str_replace($config_var->WEB_URL,'',$config_var->UPLOAD_URL.'partygirls_images/'.$_GET['id'].'/'.$list_images[$i]);
+							$image = str_replace($config_var->WEB_URL,'',$config_var->UPLOAD_URL.'partygirls_images/'.$list_images[$i]);
 							$sizes = getimagesize($image);
 							$width = $sizes[0];
 							$height = $sizes[1];
 							
 							$sizer = imageResize($width, $height, 700);
+							*/
 							?>
 							
-							<img src="<?php echo $config_var->UPLOAD_URL?>partygirls_images/<?php echo $_GET['id']?>/thumbnails/<?php echo $list_images[$i]?>" width="120" height="160" alt="" title="<?php echo $list_images[$i];?>"/><span <?php echo $sizer; ?> style="display:hide;"><?php echo $image; ?></span></a></li>
+							<img src="<?php // echo $config_var->UPLOAD_URL?>partygirls_images/<?php //echo $_GET['id']?>/thumbnails/<?php //echo $list_images[$i]?>" width="120" height="160" alt="" title="<?php //echo $list_images[$i];?>"/><span <?php //echo $sizer; ?> style="display:hide;"><?php //echo $image; ?></span></a></li>
 							
-						<?php }}?>
+						<?php //}}?>
 						</ul>
 					</div>
-                  <?php }else{ ?>  
+                  <?php // }else{ ?>  
 				  <div class="album-img-slider" style="width:850px;margin-left:70px;">
 					<div class="album-img-slider-txt">
-                        <?php for($i=0;$i < (count($list_images));$i++){
+                        <?php /*for($i=0;$i < (count($list_images));$i++){
 							if($list_images[$i] !== '.' && $list_images[$i] !== '..' && $list_images[$i]!== 'Thumbs.db' && $list_images[$i]!=='thumbnails'){
 										
 							$image = str_replace($config_var->WEB_URL,'',$config_var->UPLOAD_URL.'partygirls_images/'.$_GET['id'].'/'.$list_images[$i]);
 							$sizes = getimagesize($image);
 							$width = $sizes[0];
 							$height = $sizes[1];
-							$sizer = imageResize($width, $height, 700);
+							$sizer = imageResize($width, $height, 700);*/
 						?>
 							<div class="img">
 								<a href="javascript:void(0);" class="full_image" id="full_image_<?php echo $i;?>"><img src="<?php echo $config_var->UPLOAD_URL?>partygirls_images/<?php echo $_GET['id']?>/thumbnails/<?php echo $list_images[$i]?>" width="120" height="160" alt="" title="<?php echo $list_images[$i];?>"/><span <?php echo $sizer; ?> style="display:hide;"><?php //echo $image; ?></span></a>
 							</div>
-                         <?php }}?>   
+                         <?php //}}?>   
                         </div>
-				  </div>
-				  <?php }?>
+				  </div> -->
+				  <?php //}?>
                 
                 </div>
             </div>

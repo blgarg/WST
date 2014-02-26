@@ -21,7 +21,7 @@ class partygirls_controller extends JDatabaseMySQL{
 					$url = $config_var->UPLOAD_ROOT."partygirls_images/" ;
 					$thumbnail_path = $config_var->UPLOAD_ROOT."partygirls_images/thumbnail";
 					$thumb = $model_partygirls_addNewpartygirls->createthumbnail($url,$thumbnail_path,$image_err['filename'],'175',$image_err['type']);
-					$model_partygirls_addNewpartygirls->resizeImage($url.$image_err['filename'],'320','262',$url."front_end/".$image_err['filename'],$_FILES['image_load']);
+					$model_partygirls_addNewpartygirls->resizeImage($url.$image_err['filename'],'150','120',$url."front_end/".$image_err['filename'],$_FILES['image_load']);
 					if($image_err['error']=="")
 					{
 						echo "no image error"; 
@@ -80,7 +80,7 @@ class partygirls_controller extends JDatabaseMySQL{
 					$url = $config_var->UPLOAD_ROOT."partygirls_images/" ;
 					$thumbnail_path = $config_var->UPLOAD_ROOT."partygirls_images/thumbnail";
 					$thumb = $model_partygirls_editpartygirls->createthumbnail($url,$thumbnail_path,$image_err['filename'],'80',$image_err['type']);
-					$model_partygirls_editpartygirls->resizeImage($url.$image_err['filename'],'220','162',$url."front_end/".$image_err['filename'],$_FILES['upload_video']);
+					$model_partygirls_editpartygirls->resizeImage($url.$image_err['filename'],'150','120',$url."front_end/".$image_err['filename'],$_FILES['upload_video']);
 					if($image_err['error']=="")
 					{
 								echo "no image error"; 

@@ -11,7 +11,7 @@ class model_partygirls_addNewpartygirls extends JDatabaseMySQL{
 		//  echo "<pre>"; print_r($_REQUEST); print_r($_FILES); die;
 		  return ; }	
 													
-			function uploadimage($file)
+function uploadimage($file)
 			{
 			//echo "<pre>"; print_r($_REQUEST);print_r($_FILES); die;
 			$config_var = new config();
@@ -70,7 +70,8 @@ class model_partygirls_addNewpartygirls extends JDatabaseMySQL{
 			
 			function resizeImage($originalImage,$toWidth,$toHeight,$path,$arr)
 		{ 
-				ini_set("memory_limit", "256M"); 
+			
+			ini_set("memory_limit", "256M"); 
 				$imgType = $arr['type'];
 				// Get the original geometry and calculate scales
 				list($width, $height) = getimagesize($originalImage);
@@ -122,7 +123,7 @@ class model_partygirls_addNewpartygirls extends JDatabaseMySQL{
 				
 				return $imageResized;
 			
-		}	
+		}		
 			
 			function inserData($data)
 			{
@@ -168,7 +169,7 @@ class model_partygirls_addNewpartygirls extends JDatabaseMySQL{
 				if($this->query()){ /*echo "jshrjsm"; die;*/return true; }else{/*echo "jsm";die;*/ return false; }
 			}
 													
-													 function getvarp(){
+		 function getvarp(){
 									                 //$this->_result = mysql_query($this->qry);
 											                $_data = $this->get_page_nav();  
 													        $this->cur = $_data['result'];

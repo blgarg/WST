@@ -30,7 +30,7 @@ $category_list=model_partygirls_addNewpartygirls::categoryList();
    <td style="width:73%">
     <table border="0" cellpadding="0" cellspacing="0"  id="id-form">
             <tr>
-                <th width="153" valign="top">Gallery Title<span class="red">*</span> :</th>
+                <th width="153" valign="top">Party girls Title<span class="red">*</span> :</th>
               <td width="558"><input type="text"  name="gallery_title"  id="gallery_title" maxlength="50" class="textbox"/></td>
             </tr>
 		<tr><th width="153" valign="top">Country Name<span class="red">*</span> :</th><td>

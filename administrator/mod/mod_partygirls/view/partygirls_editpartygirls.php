@@ -32,7 +32,7 @@ $config['skin'] = 'v2';
 	$gallery = $model_partygirls_editpartygirls->getPageData($_REQUEST['cat_id']);
 	$country_list=$model_partygirls_editpartygirls->countryList();
 	$category_list=$model_partygirls_editpartygirls->categoryList();
-	$thumbnail = $config_var->thumbparty."/".$gallery['image_thumbnail'];
+	$thumbnail = $config_var->partygirls."/".$gallery['image_thumbnail'];
 }   
 
 ?>

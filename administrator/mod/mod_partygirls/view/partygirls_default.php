@@ -95,7 +95,8 @@ global $DataSet;
 				$galleries  =  $DataSet['result'];
 				//echo "<pre>"; print_r($galleries); die;
 				for($i = 0;$i<count($galleries);$i++){	
-				$thumbnail = $config_var->thumbparty."/".$galleries[$i]['image_thumbnail']; 
+				$thumbnail = $config_var->thumbparty."/".$galleries[$i]['image_thumbnail'];
+				 
 				$cat_name=model_partygirls_default::get_category_name($galleries[$i]['category_id']); 
 				$country_name=model_partygirls_default::get_country_name($galleries[$i]['country_id']);
 				
@@ -139,7 +140,7 @@ global $DataSet;
 						
                         <div style="float:left;width:14%;solid;min-height:40px;text-align:center;padding-top:12px;">
                            <a href="?mod=mod_partygirls&view=editpartygirls&m=4&cat_id=<?php echo $galleries["$i"]['id'];?>" title="Edit" style="color:#595959;"><strong><?php echo EDIT;?></strong></a>&nbsp;
-						   <a href="?mod=mod_partygirls&view=addImage&id=<?php echo $galleries["$i"]['id'];?>" title="partygirls"><img src="<?php echo $config_var->ADMIN_TPL_URL?>images/dashboard/imagegallery.png" height="35" width="45"></a></div>
+						   <!-- <a href="?mod=mod_partygirls&view=addImage&id=<?php echo $galleries["$i"]['id'];?>" title="partygirls"><img src="<?php echo $config_var->ADMIN_TPL_URL?>images/dashboard/imagegallery.png" height="35" width="45"></a> --></div>
                                                     
                      </div></td>
                 </tr>

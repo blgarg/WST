@@ -129,7 +129,7 @@ function uploadimage($file)
 					}
 				return $data;
 			}	
-		function createthumbnail($image_path,$thumb_path,$image_name,$thumb_width,$type) 
+		/*function createthumbnail($image_path,$thumb_path,$image_name,$thumb_width,$type) 
 		{	
 			$src_img = $image_path.$image_name;
 			$config_var = new config();
@@ -151,10 +151,35 @@ function uploadimage($file)
 				imagecopyresized($dst_img,$src_img,0,0,0,0,$new_w,$new_h,imagesx($src_img),imagesy($src_img)); 
 				imagejpeg($dst_img, $thumb_path."/".$image_name); 
 				return true; 
-		}
-		function resizeImage($originalImage,$toWidth,$toHeight,$path,$arr)
+		}*/
+			function createthumbnail($image_path,$thumb_path,$image_name,$thumb_width,$type)
+			{
+				
+				
+				$src_img = $image_path.$image_name;
+				$config_var = new config();
+				if($type=='image/png'){
+					$src_img = imagecreatefrompng($src_img);
+				}
+				else if($type=='image/jpeg'){
+					$src_img = imagecreatefromjpeg($src_img);
+				}
+				else if($type=='image/gif'){
+					$src_img = imagecreatefromgif($src_img);
+				}
+				$origw=imagesx($src_img);
+				$origh=imagesy($src_img);
+				$new_w = $thumb_width;
+				$diff=$origw/$new_w;
+				$new_h=$new_w;
+				$dst_img = imagecreate($new_w,$new_h);
+				imagecopyresized($dst_img,$src_img,0,0,0,0,$new_w,$new_h,imagesx($src_img),imagesy($src_img));
+				imagejpeg($dst_img, $thumb_path."/".$image_name);
+				return true;
+			}	
+function resizeImage($originalImage,$toWidth,$toHeight,$path,$arr)
 		{ 
-				ini_set("memory_limit", "256M"); 
+			    ini_set("memory_limit", "256M"); 
 				$imgType = $arr['type'];
 				// Get the original geometry and calculate scales
 				list($width, $height) = getimagesize($originalImage);
